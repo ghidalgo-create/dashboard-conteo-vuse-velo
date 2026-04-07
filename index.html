@@ -3,86 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Conteo VUSE / VELO — Marzo 2026</title>
+<title>Dashboard Conteo VUSE / VELO — Marzo 2026 | TT Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
-  :root{--bg:#0a0e1a;--bg2:#111827;--bg3:#1c2333;--card:#161d2e;--border:#2a3550;--accent1:#00d4ff;--accent2:#7c3aed;--vuse:#00d4ff;--velo:#f59e0b;--green:#10b981;--red:#ef4444;--orange:#f97316;--text:#e2e8f0;--muted:#64748b;--white:#fff;}
+  :root {
+    --navy:      #1B2F6E;
+    --navy-dark: #111D47;
+    --navy-mid:  #243580;
+    --gold:      #F5C518;
+    --gold-dark: #C9A000;
+    --silver:    #6B7A99;
+    --bg:        #F4F6FB;
+    --bg2:       #EBEEf7;
+    --card:      #FFFFFF;
+    --border:    #D0D7EC;
+    --text:      #1B2F6E;
+    --text2:     #3A4A72;
+    --muted:     #6B7A99;
+    --green:     #0E9B6A;
+    --red:       #C93B3B;
+    --orange:    #D97706;
+    --white:     #FFFFFF;
+  }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;}
-  .header{background:linear-gradient(135deg,#0d1b2e 0%,#1a0d3d 50%,#0a2440 100%);border-bottom:1px solid var(--border);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-  .header-title{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;letter-spacing:-0.5px;}
-  .v1{color:var(--accent1)!important;} .v2{color:var(--velo)!important;}
-  .header-badge{background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.3);color:var(--accent1);font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;}
-  .filters-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 32px;display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;}
-  .filter-group{display:flex;flex-direction:column;gap:4px;}
-  .filter-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--muted);}
-  select{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;min-width:155px;outline:none;}
-  select:focus{border-color:var(--accent1);}
-  .btn-reset{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;}
-  .main{padding:22px 32px;}
-  .section-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
-  .section-title::before{content:'';width:3px;height:13px;background:var(--accent1);border-radius:2px;}
-  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px;}
-  .kpi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden;}
-  .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;}
-  .c-green::before{background:var(--green);} .c-red::before{background:var(--red);} .c-blue::before{background:var(--accent1);} .c-orange::before{background:var(--orange);} .c-yellow::before{background:var(--velo);}
+  body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;min-height:100vh;font-size:14px;}
+
+  /* ── HEADER ── */
+  .header{
+    background:var(--navy-dark);
+    border-bottom:3px solid var(--gold);
+    padding:0 32px;
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+    box-shadow:0 2px 12px rgba(17,29,71,0.18);
+    position:sticky;top:0;z-index:100;
+  }
+  .header-left{display:flex;align-items:center;gap:20px;}
+  .logo-box{
+    background:#FFFFFF;
+    border-radius:8px;
+    padding:6px 12px;
+    display:flex;align-items:center;justify-content:center;
+    height:52px;
+    min-width:110px;
+    box-shadow:0 1px 4px rgba(0,0,0,0.15);
+  }
+  .logo-box img{
+    height:40px;
+    width:auto;
+    display:block;
+    object-fit:contain;
+  }
+  .header-sep{width:1px;height:40px;background:rgba(245,197,24,0.35);margin:0 4px;}
+  .header-text-title{
+    font-family:'Playfair Display',serif;
+    font-size:17px;font-weight:700;
+    color:#FFFFFF;
+    letter-spacing:0.2px;
+  }
+  .header-text-title em{color:var(--gold);font-style:normal;}
+  .header-text-sub{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;font-weight:400;}
+  .header-badge{
+    background:rgba(245,197,24,0.15);
+    border:1px solid rgba(245,197,24,0.45);
+    color:var(--gold);
+    font-size:11px;font-weight:700;
+    padding:5px 16px;border-radius:20px;
+    letter-spacing:0.8px;text-transform:uppercase;
+  }
+
+  /* ── FILTERS ── */
+  .filters-bar{
+    background:#FFFFFF;
+    border-bottom:1px solid var(--border);
+    padding:10px 32px;
+    display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;
+    box-shadow:0 1px 4px rgba(27,47,110,0.06);
+  }
+  .filter-group{display:flex;flex-direction:column;gap:3px;}
+  .filter-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);}
+  select{
+    background:#F4F6FB;border:1px solid var(--border);
+    color:var(--text);padding:7px 12px;border-radius:6px;
+    font-size:13px;font-family:'Source Sans 3',sans-serif;cursor:pointer;min-width:155px;outline:none;
+    transition:border-color 0.2s;
+  }
+  select:focus{border-color:var(--navy);}
+  .btn-reset{
+    background:#FEF2F2;border:1px solid #FECACA;
+    color:var(--red);padding:7px 14px;border-radius:6px;
+    font-size:12px;font-weight:700;cursor:pointer;
+    font-family:'Source Sans 3',sans-serif;
+    transition:all 0.15s;
+  }
+  .btn-reset:hover{background:#FEE2E2;}
+
+  /* ── MAIN ── */
+  .main{padding:20px 32px 32px;}
+
+  /* ── SECTION TITLE ── */
+  .section-title{
+    font-family:'Playfair Display',serif;
+    font-size:13px;font-weight:600;
+    color:var(--navy);
+    text-transform:uppercase;letter-spacing:1px;
+    margin-bottom:14px;padding-bottom:8px;
+    border-bottom:2px solid var(--gold);
+    display:inline-flex;align-items:center;gap:10px;
+    width:100%;
+  }
+
+  /* ── KPIs ── */
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:22px;}
+  .kpi-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:16px 18px;
+    position:relative;overflow:hidden;
+    box-shadow:0 1px 6px rgba(27,47,110,0.07);
+    transition:box-shadow 0.2s,transform 0.2s;
+  }
+  .kpi-card:hover{box-shadow:0 4px 16px rgba(27,47,110,0.12);transform:translateY(-1px);}
+  .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0;}
+  .c-gold::before{background:var(--gold);}
+  .c-green::before{background:var(--green);}
+  .c-red::before{background:var(--red);}
+  .c-navy::before{background:var(--navy);}
+  .c-orange::before{background:var(--orange);}
   .kpi-icon{font-size:20px;margin-bottom:8px;}
-  .kpi-val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;margin-bottom:4px;}
-  .kpi-label{font-size:12px;color:var(--muted);font-weight:500;}
+  .kpi-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;margin-bottom:4px;color:var(--navy);}
+  .kpi-label{font-size:12px;color:var(--muted);font-weight:600;}
   .kpi-sub{font-size:10px;color:var(--muted);margin-top:3px;}
+
+  /* ── GRIDS ── */
   .g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
   .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:18px;}
-  .chart-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;}
-  .chart-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:14px;color:var(--white);display:flex;align-items:center;gap:8px;}
+
+  /* ── CHART CARD ── */
+  .chart-card{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:10px;padding:18px 20px;
+    box-shadow:0 1px 6px rgba(27,47,110,0.07);
+  }
+  .chart-title{
+    font-family:'Playfair Display',serif;
+    font-size:13px;font-weight:600;
+    margin-bottom:14px;color:var(--navy);
+    display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:10px;
+  }
   .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:inline-block;}
-  .bar-chart{display:flex;flex-direction:column;gap:9px;}
+
+  /* ── BARS ── */
+  .bar-chart{display:flex;flex-direction:column;gap:10px;}
   .bar-row{display:flex;align-items:center;gap:10px;}
-  .bar-label{font-size:11px;color:var(--muted);width:130px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .bar-track{flex:1;background:var(--bg3);border-radius:4px;height:8px;overflow:hidden;}
-  .bar-fill{height:100%;border-radius:4px;}
-  .bar-val{font-size:11px;font-weight:600;width:34px;text-align:right;flex-shrink:0;}
-  .donut-wrap{display:flex;align-items:center;gap:22px;}
+  .bar-label{font-size:11px;color:var(--text2);width:130px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;}
+  .bar-track{flex:1;background:var(--bg2);border-radius:4px;height:9px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:4px;transition:width 0.6s ease;}
+  .bar-val{font-size:11px;font-weight:700;width:34px;text-align:right;flex-shrink:0;color:var(--navy);}
+
+  /* ── DONUT ── */
+  .donut-wrap{display:flex;align-items:center;gap:24px;}
   .donut-center{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;width:110px;height:110px;text-align:center;}
-  .donut-center-val{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;}
+  .donut-center-val{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;}
   .donut-center-label{font-size:10px;color:var(--muted);}
-  .legend{display:flex;flex-direction:column;gap:8px;flex:1;}
+  .legend{display:flex;flex-direction:column;gap:10px;flex:1;}
   .legend-item{display:flex;align-items:center;gap:8px;font-size:12px;}
   .legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
-  .legend-val{margin-left:auto;font-weight:600;font-size:13px;}
+  .legend-val{margin-left:auto;font-weight:700;font-size:13px;color:var(--navy);}
+
+  /* ── TABLE ── */
   .table-wrap{overflow-x:auto;overflow-y:auto;}
   table{width:100%;border-collapse:collapse;font-size:12px;}
-  thead th{background:var(--bg3);color:var(--muted);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;padding:9px 12px;text-align:left;position:sticky;top:0;border-bottom:1px solid var(--border);}
+  thead th{
+    background:var(--bg2);color:var(--navy);font-size:10px;font-weight:700;
+    text-transform:uppercase;letter-spacing:0.6px;padding:9px 12px;
+    text-align:left;position:sticky;top:0;border-bottom:2px solid var(--border);
+  }
   tbody tr{border-bottom:1px solid var(--border);}
-  tbody tr:hover{background:rgba(0,212,255,0.04);}
+  tbody tr:hover{background:#F0F4FF;}
   tbody td{padding:8px 12px;}
-  .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;}
-  .pill-green{background:rgba(16,185,129,.15);color:#10b981;}
-  .pill-red{background:rgba(239,68,68,.15);color:#ef4444;}
-  .pill-orange{background:rgba(249,115,22,.15);color:#f97316;}
-  .pill-blue{background:rgba(0,212,255,.15);color:var(--accent1);}
-  .pill-yellow{background:rgba(245,158,11,.15);color:var(--velo);}
-  .pill-gray{background:rgba(100,116,139,.15);color:var(--muted);}
+
+  /* ── PILLS ── */
+  .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;}
+  .pill-green{background:#D1FAE5;color:#065F46;}
+  .pill-red{background:#FEE2E2;color:#991B1B;}
+  .pill-orange{background:#FEF3C7;color:#92400E;}
+  .pill-gold{background:#FEF9C3;color:#854D0E;}
+  .pill-navy{background:#EEF2FF;color:var(--navy);}
+  .pill-gray{background:#F1F5F9;color:var(--muted);}
+
+  /* ── REGION CARDS ── */
   .region-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-  .region-card{background:var(--bg3);border-radius:10px;padding:14px;}
-  .region-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:8px;}
-  .region-bar-track{background:rgba(100,116,139,.2);border-radius:4px;height:6px;overflow:hidden;margin:6px 0 3px;}
+  .region-card{
+    background:var(--bg2);border-radius:8px;padding:14px;
+    border:1px solid var(--border);border-left:3px solid var(--navy);
+  }
+  .region-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:8px;}
+  .region-bar-track{background:rgba(27,47,110,0.1);border-radius:4px;height:6px;overflow:hidden;margin:6px 0 3px;}
   .region-bar-fill{height:100%;border-radius:4px;}
-  input[type=text]{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;outline:none;}
+
+  /* ── INPUT ── */
+  input[type=text]{
+    background:#F4F6FB;border:1px solid var(--border);color:var(--text);
+    padding:7px 12px;border-radius:6px;font-size:13px;
+    font-family:'Source Sans 3',sans-serif;outline:none;
+  }
+  input[type=text]:focus{border-color:var(--navy);}
+
+  /* ── FOOTER ── */
+  .footer{
+    background:var(--navy-dark);
+    border-top:3px solid var(--gold);
+    padding:14px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:11px;color:rgba(255,255,255,0.5);
+    margin-top:10px;
+  }
+  .footer span{color:var(--gold);font-weight:700;}
+
   ::-webkit-scrollbar{width:4px;height:4px;}
-  ::-webkit-scrollbar-track{background:var(--bg2);}
+  ::-webkit-scrollbar-track{background:var(--bg);}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <div class="header">
-  <div>
-    <div class="header-title">Dashboard Conteo <span class="v1">VUSE</span> / <span class="v2">VELO</span></div>
-    <div style="font-size:11px;color:var(--muted);margin-top:2px">Reporte Marzo 2026 · Todas las regiones</div>
+  <div class="header-left">
+    <div class="logo-box">
+      <img
+        src="data:image/jpeg;base64,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"
+        alt="TT Audit — Trade Marketing Solutions"
+        onerror="this.onerror=null;this.parentElement.innerHTML='<span style=\'font-family:serif;font-weight:700;color:#1B2F6E;font-size:13px;\'>TT AUDIT</span>';"
+      />
+    </div>
+    <div class="header-sep"></div>
+    <div>
+      <div class="header-text-title">Dashboard Conteo <em>VUSE</em> / <em>VELO</em></div>
+      <div class="header-text-sub">Reporte Marzo 2026 · Trade Marketing Solutions</div>
+    </div>
   </div>
   <div class="header-badge">Marzo 2026</div>
 </div>
 
+<!-- FILTERS -->
 <div class="filters-bar">
   <div class="filter-group">
     <div class="filter-label">Región</div>
@@ -124,6 +292,7 @@
   <button class="btn-reset" onclick="resetFilters()">↺ Limpiar filtros</button>
 </div>
 
+<!-- MAIN -->
 <div class="main">
 
   <div class="section-title">Resumen General</div>
@@ -135,39 +304,30 @@
       <div id="region-cards"></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--accent1)"></span>Distribución de Resultados</div>
+      <div class="chart-title"><span class="dot" style="background:var(--gold-dark)"></span>Distribución de Resultados</div>
       <div class="donut-wrap" id="donut-wrap"></div>
     </div>
   </div>
 
   <div class="g2">
     <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--velo)"></span>Cobertura por Promotor</div>
-      <div class="table-wrap" style="max-height:360px;">
-        <table>
-          <thead><tr><th>Promotor</th><th>Región</th><th>Asignadas</th><th>Efectivas</th><th>No Ef.</th><th>%</th></tr></thead>
-          <tbody id="promo-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--red)"></span>Motivos No Efectivos (57 PDVs)</div>
+      <div class="chart-title"><span class="dot" style="background:var(--red)"></span>Motivos No Efectivos <span style="font-size:10px;color:var(--muted);font-weight:400;margin-left:4px">(57 PDVs total)</span></div>
       <div id="motivos-bars" class="bar-chart"></div>
       <div id="motivos-detail" style="margin-top:16px;font-size:11px;color:var(--muted)"></div>
     </div>
-  </div>
-
-  <div class="g3">
     <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--vuse)"></span>PDVs Efectivos por KKAA</div>
+      <div class="chart-title"><span class="dot" style="background:var(--navy)"></span>PDVs Efectivos por KKAA</div>
       <div id="kkaa-bars" class="bar-chart"></div>
     </div>
+  </div>
+
+  <div class="g2">
     <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--accent2)"></span>Tendencia Semanal</div>
+      <div class="chart-title"><span class="dot" style="background:var(--navy-mid)"></span>Tendencia Semanal (PDVs con conteo)</div>
       <div id="weekly-chart"></div>
-      <div style="display:flex;gap:14px;margin-top:10px;font-size:11px;">
-        <span style="color:var(--vuse)">■ VUSE</span>
-        <span style="color:var(--velo)">■ VELO</span>
+      <div style="display:flex;gap:18px;margin-top:10px;font-size:11px;font-weight:600;">
+        <span style="color:var(--gold-dark)">■ VUSE</span>
+        <span style="color:var(--silver)">■ VELO</span>
       </div>
     </div>
     <div class="chart-card">
@@ -176,48 +336,19 @@
     </div>
   </div>
 
-  <div class="section-title" style="margin-top:4px">Conteo Parcial — PDVs Efectivos con conteo incompleto de SKUs</div>
+  <div class="section-title" style="margin-top:4px">Conteo Parcial — PDVs con conteo incompleto de SKUs</div>
   <div class="g2">
     <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>Conteo Parcial por Promotor <span style="font-size:10px;color:var(--muted);font-weight:400;margin-left:4px">(211 PDVs únicos)</span></div>
-      <div id="parcial-promo" class="bar-chart"></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>Conteo Parcial por KKAA</div>
+      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>Conteo Parcial por KKAA <span style="font-size:10px;color:var(--muted);font-weight:400;margin-left:4px">(211 PDVs únicos)</span></div>
       <div id="parcial-kkaa" class="bar-chart"></div>
     </div>
-  </div>
-
-  <div class="section-title">Detalle de PDVs</div>
-  <div class="g2">
     <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--red)"></span>PDVs No Efectivos</div>
-      <div style="display:flex;gap:10px;margin-bottom:10px;align-items:center;flex-wrap:wrap;">
-        <input type="text" id="search-noef" placeholder="🔍 Buscar tienda o promotor…" oninput="renderNoEfTable()" style="width:220px;">
-        <select id="f-motivo-noef" onchange="renderNoEfTable()" style="min-width:160px;">
-          <option value="">Todos los motivos</option>
-          <option value="NO PERMITE CONTEO">No Permite Conteo</option>
-          <option value="LOCAL CERRADO">Local Cerrado</option>
-          <option value="NO VENDE VUSE">No Vende VUSE</option>
-          <option value="STAFF OCUPADO">Staff Ocupado</option>
-          <option value="LOCAL EN INVENTARIO">Local en Inventario</option>
-        </select>
-        <span id="noef-count" style="font-size:11px;color:var(--muted)"></span>
-      </div>
-      <div class="table-wrap" style="max-height:280px;">
-        <table>
-          <thead><tr><th>POS</th><th>KKAA</th><th>Promotor</th><th>Ciudad</th><th>Motivo</th></tr></thead>
-          <tbody id="noef-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>PDVs Conteo Parcial</div>
+      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>PDVs con Conteo Parcial — Detalle</div>
       <div style="display:flex;gap:10px;margin-bottom:10px;align-items:center;">
-        <input type="text" id="search-parcial" placeholder="🔍 Buscar tienda o promotor…" oninput="renderParcialTable()" style="width:220px;">
+        <input type="text" id="search-parcial" placeholder="🔍 Buscar tienda o promotor…" oninput="renderParcialTable()" style="width:210px;">
         <span id="parcial-count" style="font-size:11px;color:var(--muted);margin-left:auto"></span>
       </div>
-      <div class="table-wrap" style="max-height:280px;">
+      <div class="table-wrap" style="max-height:250px;">
         <table>
           <thead><tr><th>POS</th><th>KKAA</th><th>Promotor</th><th>Ciudad</th></tr></thead>
           <tbody id="parcial-tbody"></tbody>
@@ -226,44 +357,62 @@
     </div>
   </div>
 
+  <div class="section-title">PDVs No Efectivos — Detalle Completo</div>
+  <div class="chart-card">
+    <div style="display:flex;gap:12px;margin-bottom:12px;align-items:center;flex-wrap:wrap;">
+      <input type="text" id="search-noef" placeholder="🔍 Buscar tienda, promotor o cadena…" oninput="renderNoEfTable()" style="width:260px;">
+      <select id="f-motivo-noef" onchange="renderNoEfTable()" style="min-width:180px;">
+        <option value="">Todos los motivos</option>
+        <option value="NO PERMITE CONTEO">No Permite Conteo</option>
+        <option value="LOCAL CERRADO">Local Cerrado</option>
+        <option value="NO VENDE VUSE">No Vende VUSE</option>
+        <option value="STAFF OCUPADO">Staff Ocupado</option>
+        <option value="LOCAL EN INVENTARIO">Local en Inventario</option>
+      </select>
+      <span id="noef-count" style="font-size:11px;color:var(--muted);margin-left:auto"></span>
+    </div>
+    <div class="table-wrap" style="max-height:300px;">
+      <table>
+        <thead><tr><th>POS</th><th>KKAA</th><th>Promotor</th><th>Ciudad</th><th>Motivo</th></tr></thead>
+        <tbody id="noef-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>© 2026 <span>TT Audit</span> · Trade Marketing Solutions — Reporte Conteo Marzo 2026</div>
+  <div>Datos al <span>31/03/2026</span></div>
 </div>
 
 <script>
 const D = {
   promo_summary:[{"promotor":"CECILIA GUERRERO","assigned":41,"efectivas":41,"no_efectivas":0,"region":"KC","kacc":"AVA,PRIMAX,TAMBO,REPSOL"},{"promotor":"EDWARD RODRIGUEZ","assigned":88,"efectivas":88,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,PRIMAX,REPSOL,AVA,OXXO"},{"promotor":"EMMELINE PEREYRA","assigned":12,"efectivas":12,"no_efectivas":0,"region":"NKC","kacc":"TAMBO,PRIMAX"},{"promotor":"FLAVIO TRIGOSO","assigned":2,"efectivas":2,"no_efectivas":0,"region":"NKC","kacc":"PRIMAX"},{"promotor":"GIANFRANCO AREVALO","assigned":18,"efectivas":18,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,PRIMAX,OXXO"},{"promotor":"JENNY VALLADARES","assigned":95,"efectivas":92,"no_efectivas":3,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL,AVA"},{"promotor":"JESSENIA ARELLANO","assigned":86,"efectivas":71,"no_efectivas":15,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL"},{"promotor":"JHORDAN LOPEZ","assigned":6,"efectivas":6,"no_efectivas":0,"region":"KC","kacc":"PRIMAX,TAMBO"},{"promotor":"JOSE BENDEZÚ","assigned":98,"efectivas":89,"no_efectivas":9,"region":"LIMA","kacc":"TAMBO,OXXO,AVA,PRIMAX,REPSOL"},{"promotor":"KELLY BAZAN","assigned":20,"efectivas":20,"no_efectivas":0,"region":"KC","kacc":"PRIMAX,TAMBO,AVA,REPSOL"},{"promotor":"KIARA PANDURO","assigned":3,"efectivas":3,"no_efectivas":0,"region":"NKC","kacc":"PRIMAX"},{"promotor":"MILEYDI BALCAZAR","assigned":128,"efectivas":117,"no_efectivas":11,"region":"LIMA","kacc":"OXXO,TAMBO,PRIMAX,AVA,REPSOL"},{"promotor":"RENATO BRICEÑO","assigned":17,"efectivas":17,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL"},{"promotor":"SANDRA VILLAFANA","assigned":6,"efectivas":6,"no_efectivas":0,"region":"NKC","kacc":"TAMBO,PRIMAX"},{"promotor":"SARAI AZO","assigned":28,"efectivas":28,"no_efectivas":0,"region":"KC","kacc":"PRIMAX,AVA,TAMBO"},{"promotor":"SHEILA CASANOVA","assigned":91,"efectivas":90,"no_efectivas":1,"region":"LIMA","kacc":"REPSOL,TAMBO,OXXO,PRIMAX"},{"promotor":"SINTHIA IZAGUIRRE","assigned":20,"efectivas":20,"no_efectivas":0,"region":"NKC","kacc":"PRIMAX,OXXO,TAMBO"},{"promotor":"STEPHANY APUMAYTA","assigned":118,"efectivas":102,"no_efectivas":16,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL,AVA"},{"promotor":"VALERIA HUAMAN","assigned":48,"efectivas":48,"no_efectivas":0,"region":"KC","kacc":"TAMBO,OXXO,REPSOL,PRIMAX,AVA"},{"promotor":"WILLGERSON PAJITA","assigned":96,"efectivas":96,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL,AVA"},{"promotor":"YAQUELIN BORJA","assigned":107,"efectivas":106,"no_efectivas":1,"region":"LIMA","kacc":"OXXO,PRIMAX,TAMBO,REPSOL,AVA"},{"promotor":"YUBICSA ANGELES","assigned":14,"efectivas":13,"no_efectivas":1,"region":"NKC","kacc":"PRIMAX,TAMBO,REPSOL,AVA"}],
-
   motivos_agg:[{"motivo":"NO PERMITE CONTEO","count":49},{"motivo":"LOCAL CERRADO","count":3},{"motivo":"NO VENDE VUSE","count":2},{"motivo":"STAFF OCUPADO","count":2},{"motivo":"LOCAL EN INVENTARIO","count":1}],
-
-  motivos_detail:[{"store_id":688535,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CALDERON","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":691467,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CANDAMO","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":691815,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHICLAYO","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393287,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ROETGEN","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":421971,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - EL AVION","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":705731,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - LIMATAMBO2","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393271,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ANGAMOS-C25","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393285,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA AVIACION","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393288,"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PRIMAVERA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393325,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - PRINCIPAL","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393011,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - 06 DE AGOSTO","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":392798,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - SANTA MARIA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393112,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - TENAUD","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393113,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - AREQUIPA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393103,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ANGAMOS-C4","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393108,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - INCLAN","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":492996,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ORDOÑEZ","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393063,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - HUAYLAS-C1","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393064,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - HUAYLAS-C10","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393062,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ELSOL-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":643235,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - GCIVIL-C7","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":493887,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANPEDRO-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":706770,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REVOLUCION 2-VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":705211,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REVOLUCION-C18 VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393101,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VALLEJO","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393086,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - LIMAVES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393092,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REPUBLICANA-VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":706252,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CHORRILLOS-C2","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":709645,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - GUARDIAPERUANA-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":709653,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ALAMEDASUR-C8","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393051,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ALAMEDA-SUR","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393074,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VILLA1","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":392941,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - AMERICA-SJM","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393171,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CALLE-A","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393014,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - BOLIVAR 2","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":392919,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VENEZUELA-C11","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":392920,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VENEZUELA-C9","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":519492,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - UGARTE-C13","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393246,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ROMA","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393247,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SNMARCOS","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":651230,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANCHEZCARRION-C2","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":637557,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - PIEROLA","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":709652,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - BRASIL C13","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":691808,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CONQUISTADORES-C1","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":392830,"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S BAHIA","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":488509,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - AREQUIPA-C25","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393139,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - PETIT-C26","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":709641,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - MANSICHE C2 TRUJILLO","promotor":"CECILIA GUERRERO","motivo":"NO PERMITE CONTEO","ciudad":"TRUJILLO"},{"store_id":616678,"kkaa":"COESTI S.A.","POS":"PRIMAX - CALLE DERECHA","promotor":"YUBICSA ANGELES","motivo":"NO VENDE VUSE","ciudad":"HUARAL"},{"store_id":498257,"kkaa":"INDELFI","POS":"INDELFI LOS PORTALES - TRUJILLO","promotor":"CECILIA GUERRERO","motivo":"NO VENDE VUSE","ciudad":"TRUJILLO"},{"store_id":705213,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - PANAMERICANA LURIN","promotor":"GIANFRANCO AREVALO","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"store_id":578145,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANTAROSA-LURIN","promotor":"GIANFRANCO AREVALO","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"store_id":691816,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - DULANTO-C14","promotor":"SHEILA CASANOVA","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"store_id":600739,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ELIASAGUIRRE-C3-CHICLAYO","promotor":"KELLY BAZAN","motivo":"STAFF OCUPADO","ciudad":"CHICLAYO"},{"store_id":393223,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA EUCALIPTOS","promotor":"EDWARD RODRIGUEZ","motivo":"STAFF OCUPADO","ciudad":"LIMA"},{"store_id":501363,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - RINCONADA","promotor":"EDWARD RODRIGUEZ","motivo":"LOCAL EN INVENTARIO","ciudad":"LIMA"},{"store_id":392787,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA CARGO CITY","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393297,"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S QUILCA","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"store_id":393201,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA HABICH","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"}],
-
+  motivos_detail:[{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CALDERON","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CANDAMO","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHICLAYO","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ROETGEN","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - EL AVION","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - LIMATAMBO2","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ANGAMOS-C25","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA AVIACION","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PRIMAVERA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - PRINCIPAL","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - 06 DE AGOSTO","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - SANTA MARIA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - TENAUD","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - AREQUIPA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ANGAMOS-C4","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - INCLAN","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ORDOÑEZ","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - HUAYLAS-C1","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - HUAYLAS-C10","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ELSOL-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - GCIVIL-C7","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANPEDRO-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REVOLUCION 2-VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REVOLUCION-C18 VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VALLEJO","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - LIMAVES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REPUBLICANA-VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CHORRILLOS-C2","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - GUARDIAPERUANA-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ALAMEDASUR-C8","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ALAMEDA-SUR","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VILLA1","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - AMERICA-SJM","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CALLE-A","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - BOLIVAR 2","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VENEZUELA-C11","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VENEZUELA-C9","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - UGARTE-C13","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ROMA","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SNMARCOS","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANCHEZCARRION-C2","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - PIEROLA","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - BRASIL C13","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CONQUISTADORES-C1","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S BAHIA","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - AREQUIPA-C25","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - PETIT-C26","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - MANSICHE C2 TRUJILLO","promotor":"CECILIA GUERRERO","motivo":"NO PERMITE CONTEO","ciudad":"TRUJILLO"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - CALLE DERECHA","promotor":"YUBICSA ANGELES","motivo":"NO VENDE VUSE","ciudad":"HUARAL"},{"kkaa":"INDELFI","POS":"INDELFI LOS PORTALES - TRUJILLO","promotor":"CECILIA GUERRERO","motivo":"NO VENDE VUSE","ciudad":"TRUJILLO"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - PANAMERICANA LURIN","promotor":"GIANFRANCO AREVALO","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANTAROSA-LURIN","promotor":"GIANFRANCO AREVALO","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - DULANTO-C14","promotor":"SHEILA CASANOVA","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ELIASAGUIRRE-C3-CHICLAYO","promotor":"KELLY BAZAN","motivo":"STAFF OCUPADO","ciudad":"CHICLAYO"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA EUCALIPTOS","promotor":"EDWARD RODRIGUEZ","motivo":"STAFF OCUPADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - RINCONADA","promotor":"EDWARD RODRIGUEZ","motivo":"LOCAL EN INVENTARIO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA CARGO CITY","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S QUILCA","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA HABICH","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"}],
   kkaa_ef:[{"CADENA":"CADENA DE COMERCIO PERU S.A.C.","REG":"KC","count":20},{"CADENA":"CADENA DE COMERCIO PERU S.A.C.","REG":"LIMA","count":181},{"CADENA":"CADENA DE COMERCIO PERU S.A.C.","REG":"NKC","count":3},{"CADENA":"COESTI S.A.","REG":"KC","count":40},{"CADENA":"COESTI S.A.","REG":"LIMA","count":109},{"CADENA":"COESTI S.A.","REG":"NKC","count":7},{"CADENA":"GRIFO AVA","REG":"KC","count":9},{"CADENA":"GRIFO AVA","REG":"LIMA","count":15},{"CADENA":"GRIFO AVA","REG":"NKC","count":2},{"CADENA":"INDELFI","REG":"KC","count":2},{"CADENA":"INDELFI","REG":"LIMA","count":1},{"CADENA":"INDELFI","REG":"NKC","count":1},{"CADENA":"LAGARDARE","REG":"KC","count":2},{"CADENA":"RAPPI","REG":"KC","count":2},{"CADENA":"REPSOL COMERCIAL SAC","REG":"KC","count":4},{"CADENA":"REPSOL COMERCIAL SAC","REG":"LIMA","count":44},{"CADENA":"REPSOL COMERCIAL SAC","REG":"NKC","count":1},{"CADENA":"TIENDAS TAMBO S.A.C.","REG":"KC","count":71},{"CADENA":"TIENDAS TAMBO S.A.C.","REG":"LIMA","count":530},{"CADENA":"TIENDAS TAMBO S.A.C.","REG":"NKC","count":46}],
-
   weekly:[{"s":"SEM 1","b":"VELO","c":86},{"s":"SEM 1","b":"VUSE","c":391},{"s":"SEM 2","b":"VELO","c":33},{"s":"SEM 2","b":"VUSE","c":287},{"s":"SEM 3","b":"VELO","c":43},{"s":"SEM 3","b":"VUSE","c":142},{"s":"SEM 4","b":"VELO","c":20},{"s":"SEM 4","b":"VUSE","c":169},{"s":"SEM 5","b":"VELO","c":7},{"s":"SEM 5","b":"VUSE","c":57}],
-
-  brand_promo:[{"p":"CECILIA GUERRERO","b":"VELO","c":14},{"p":"CECILIA GUERRERO","b":"VUSE","c":44},{"p":"EDWARD RODRIGUEZ","b":"VELO","c":34},{"p":"EDWARD RODRIGUEZ","b":"VUSE","c":89},{"p":"EMMELINE PEREYRA","b":"VUSE","c":12},{"p":"FLAVIO TRIGOSO","b":"VUSE","c":2},{"p":"GIANFRANCO AREVALO","b":"VUSE","c":18},{"p":"JENNY VALLADARES","b":"VELO","c":58},{"p":"JENNY VALLADARES","b":"VUSE","c":92},{"p":"JESSENIA ARELLANO","b":"VELO","c":8},{"p":"JESSENIA ARELLANO","b":"VUSE","c":71},{"p":"JHORDAN LOPEZ","b":"VELO","c":6},{"p":"JHORDAN LOPEZ","b":"VUSE","c":6},{"p":"JOSE BENDEZÚ","b":"VELO","c":84},{"p":"JOSE BENDEZÚ","b":"VUSE","c":89},{"p":"KELLY BAZAN","b":"VELO","c":2},{"p":"KELLY BAZAN","b":"VUSE","c":20},{"p":"KIARA PANDURO","b":"VUSE","c":2},{"p":"MILEYDI BALCAZAR","b":"VELO","c":45},{"p":"MILEYDI BALCAZAR","b":"VUSE","c":116},{"p":"RENATO BRICEÑO","b":"VELO","c":10},{"p":"RENATO BRICEÑO","b":"VUSE","c":15},{"p":"SANDRA VILLAFANA","b":"VUSE","c":7},{"p":"SARAI AZO","b":"VELO","c":21},{"p":"SARAI AZO","b":"VUSE","c":30},{"p":"SHEILA CASANOVA","b":"VELO","c":27},{"p":"SHEILA CASANOVA","b":"VUSE","c":90},{"p":"SINTHIA IZAGUIRRE","b":"VELO","c":3},{"p":"SINTHIA IZAGUIRRE","b":"VUSE","c":20},{"p":"STEPHANY APUMAYTA","b":"VELO","c":1},{"p":"STEPHANY APUMAYTA","b":"VUSE","c":103},{"p":"VALERIA HUAMAN","b":"VELO","c":24},{"p":"VALERIA HUAMAN","b":"VUSE","c":49},{"p":"WILLGERSON PAJITA","b":"VELO","c":46},{"p":"WILLGERSON PAJITA","b":"VUSE","c":96},{"p":"YAQUELIN BORJA","b":"VELO","c":97},{"p":"YAQUELIN BORJA","b":"VUSE","c":105},{"p":"YUBICSA ANGELES","b":"VELO","c":1},{"p":"YUBICSA ANGELES","b":"VUSE","c":13}],
-
-  top_sku:[{"brand":"VUSE","sku":"GRAPE ICE 1K","units":3888},{"brand":"VUSE","sku":"GREEN APPLE 1K","units":3744},{"brand":"VUSE","sku":"WATERMELON ICE 1K","units":3370},{"brand":"VUSE","sku":"BERRY BLEND 1K","units":3355},{"brand":"VUSE","sku":"PEPPERMINT ICE 1K","units":3003},{"brand":"VUSE","sku":"PEPPERMINT ICE 3K","units":2519},{"brand":"VUSE","sku":"STRAWBERRY ICE 1K","units":2418},{"brand":"VUSE","sku":"GREEN APPLE 3K","units":2393},{"brand":"VELO","sku":"UVA MORADA 6MG","units":1628},{"brand":"VELO","sku":"MENTA FRESCA 6MG","units":1616},{"brand":"VELO","sku":"UVA MORADA 4MG","units":1542},{"brand":"VELO","sku":"SANDIA FRESCA 4MG","units":1539},{"brand":"VELO","sku":"MENTA FRESCA 4MG","units":1513}],
-
+  brand_promo:[{"p":"CECILIA GUERRERO","b":"VELO","c":14},{"p":"CECILIA GUERRERO","b":"VUSE","c":44},{"p":"EDWARD RODRIGUEZ","b":"VELO","c":34},{"p":"EDWARD RODRIGUEZ","b":"VUSE","c":89},{"p":"EMMELINE PEREYRA","b":"VUSE","c":12},{"p":"GIANFRANCO AREVALO","b":"VUSE","c":18},{"p":"JENNY VALLADARES","b":"VELO","c":58},{"p":"JENNY VALLADARES","b":"VUSE","c":92},{"p":"JESSENIA ARELLANO","b":"VELO","c":8},{"p":"JESSENIA ARELLANO","b":"VUSE","c":71},{"p":"JOSE BENDEZÚ","b":"VELO","c":84},{"p":"JOSE BENDEZÚ","b":"VUSE","c":89},{"p":"KELLY BAZAN","b":"VELO","c":2},{"p":"KELLY BAZAN","b":"VUSE","c":20},{"p":"MILEYDI BALCAZAR","b":"VELO","c":45},{"p":"MILEYDI BALCAZAR","b":"VUSE","c":116},{"p":"RENATO BRICEÑO","b":"VELO","c":10},{"p":"RENATO BRICEÑO","b":"VUSE","c":15},{"p":"SARAI AZO","b":"VELO","c":21},{"p":"SARAI AZO","b":"VUSE","c":30},{"p":"SHEILA CASANOVA","b":"VELO","c":27},{"p":"SHEILA CASANOVA","b":"VUSE","c":90},{"p":"SINTHIA IZAGUIRRE","b":"VELO","c":3},{"p":"SINTHIA IZAGUIRRE","b":"VUSE","c":20},{"p":"STEPHANY APUMAYTA","b":"VELO","c":1},{"p":"STEPHANY APUMAYTA","b":"VUSE","c":103},{"p":"VALERIA HUAMAN","b":"VELO","c":24},{"p":"VALERIA HUAMAN","b":"VUSE","c":49},{"p":"WILLGERSON PAJITA","b":"VELO","c":46},{"p":"WILLGERSON PAJITA","b":"VUSE","c":96},{"p":"YAQUELIN BORJA","b":"VELO","c":97},{"p":"YAQUELIN BORJA","b":"VUSE","c":105},{"p":"YUBICSA ANGELES","b":"VELO","c":1},{"p":"YUBICSA ANGELES","b":"VUSE","c":13}],
+  top_sku:[{"brand":"VUSE","sku":"GRAPE ICE 1K","units":3888},{"brand":"VUSE","sku":"GREEN APPLE 1K","units":3744},{"brand":"VUSE","sku":"WATERMELON ICE 1K","units":3370},{"brand":"VUSE","sku":"BERRY BLEND 1K","units":3355},{"brand":"VUSE","sku":"PEPPERMINT ICE 1K","units":3003},{"brand":"VUSE","sku":"PEPPERMINT ICE 3K","units":2519},{"brand":"VUSE","sku":"STRAWBERRY ICE 1K","units":2418},{"brand":"VELO","sku":"UVA MORADA 6MG","units":1628},{"brand":"VELO","sku":"MENTA FRESCA 6MG","units":1616},{"brand":"VELO","sku":"UVA MORADA 4MG","units":1542},{"brand":"VELO","sku":"SANDIA FRESCA 4MG","units":1539},{"brand":"VELO","sku":"MENTA FRESCA 4MG","units":1513}],
   parcial_promo:[{"p":"MILEYDI BALCAZAR","c":74},{"p":"STEPHANY APUMAYTA","c":39},{"p":"JESSENIA ARELLANO","c":32},{"p":"YAQUELIN BORJA","c":27},{"p":"JENNY VALLADARES","c":15},{"p":"EMMELINE PEREYRA","c":5},{"p":"WILLGERSON PAJITA","c":5},{"p":"EDWARD RODRIGUEZ","c":4},{"p":"KIARA PANDURO","c":3},{"p":"JOSE BENDEZÚ","c":2},{"p":"RENATO BRICEÑO","c":2},{"p":"KELLY BAZAN","c":1},{"p":"SARAI AZO","c":1},{"p":"SINTHIA IZAGUIRRE","c":1}],
-
-  parcial_detail:[{"store_id":691421,"kkaa":"GRIFO AVA","POS":"AVA - ARAMBURU","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":710948,"kkaa":"GRIFO AVA","POS":"AVA - BARRANCO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"store_id":691417,"kkaa":"GRIFO AVA","POS":"AVA - BENAVIDES","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"store_id":393110,"kkaa":"GRIFO AVA","POS":"AVA - ESPINAR","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"store_id":392764,"kkaa":"GRIFO AVA","POS":"AVA - LA PUNTA","promotor":"JENNY VALLADARES","ciudad":"LIMA"},{"store_id":691420,"kkaa":"GRIFO AVA","POS":"AVA - MONTERRICO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"store_id":393323,"kkaa":"GRIFO AVA","POS":"AVA - TELLO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":392802,"kkaa":"GRIFO AVA","POS":"AVA - DASSO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":710819,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ANTERQUERA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":393124,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - AREQUIPA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":633141,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ARONA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":392852,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - AYACUCHO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"store_id":626303,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CAMELIAS","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":636727,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CASINELLI","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":691815,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHICLAYO","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"store_id":690837,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHOCAVENTO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":454566,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CLEMENTE","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":497461,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - COSTA RICA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":680300,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - GHROMANN","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":633028,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - IQUITOS","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":510216,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - MARTIN","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"store_id":470851,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - MERINO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":710992,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - MORE","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"store_id":421966,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - NEGOCIOS","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":647477,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - SALAVERRY","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":710141,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - SAUCO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":506102,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - SORIA","promotor":"EDWARD RODRIGUEZ","ciudad":"LIMA"},{"store_id":626311,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - TREE","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":636725,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - VILLAR","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":637736,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ORUÉ","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":711020,"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - HIGH LINE","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"store_id":706441,"kkaa":"COESTI S.A.","POS":"PRIMAX - CRUZ DEL SUR","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":393276,"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S AURORA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"store_id":393286,"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S EL ROSARIO","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"store_id":617251,"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S ESTRELLA","promotor":"EMMELINE PEREYRA","ciudad":"CHINCHA"},{"store_id":393290,"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S LA CALERA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"store_id":393315,"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S REPUBLICA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":393316,"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S SAN ISIDRO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":393281,"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S SAN LUIS 2","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"store_id":392834,"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO ARAMBURU 1","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":489387,"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PANORAMA","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"store_id":392799,"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PARDO","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"store_id":392987,"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO RICARDO PALMA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"store_id":393136,"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO SALAVERRY 3","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":617255,"kkaa":"COESTI S.A.","POS":"PRIMAX - PRIMAVERA 2","promotor":"SINTHIA IZAGUIRRE","ciudad":"ICA"},{"store_id":393317,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - EL PARQUE","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":431247,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - PARQUE SUR","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":497726,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - SPRINT","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":393215,"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - TIKI TOO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"store_id":392983,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - 28DJULIO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"store_id":392984,"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - 28DJULIO-C6","promotor":"YAQUELIN BORJA","ciudad":"LIMA"}]
+  parcial_detail:[{"kkaa":"GRIFO AVA","POS":"AVA - ARAMBURU","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - BARRANCO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - BENAVIDES","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - ESPINAR","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - LA PUNTA","promotor":"JENNY VALLADARES","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - MONTERRICO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - TELLO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - DASSO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ANTERQUERA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - AREQUIPA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ARONA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - AYACUCHO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CAMELIAS","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CASINELLI","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHICLAYO","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHOCAVENTO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CLEMENTE","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - COSTA RICA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - GHROMANN","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - IQUITOS","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - MARTIN","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - MERINO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - MORE","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - NEGOCIOS","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - SALAVERRY","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - SAUCO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - SORIA","promotor":"EDWARD RODRIGUEZ","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - TREE","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - VILLAR","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ORUÉ","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - HIGH LINE","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - CRUZ DEL SUR","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S AURORA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S EL ROSARIO","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S ESTRELLA","promotor":"EMMELINE PEREYRA","ciudad":"CHINCHA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S LA CALERA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S REPUBLICA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S SAN ISIDRO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S SAN LUIS 2","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO ARAMBURU 1","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PANORAMA","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PARDO","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO RICARDO PALMA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO SALAVERRY 3","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - PRIMAVERA 2","promotor":"SINTHIA IZAGUIRRE","ciudad":"ICA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - EL PARQUE","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - PARQUE SUR","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - SPRINT","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - TIKI TOO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - 28DJULIO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - 28DJULIO-C6","promotor":"YAQUELIN BORJA","ciudad":"LIMA"}]
 };
 
-// Build parcial KKAA summary
-const pk={};
-D.parcial_detail.forEach(d=>{pk[d.kkaa]=(pk[d.kkaa]||0)+1;});
+const pk={};D.parcial_detail.forEach(d=>{pk[d.kkaa]=(pk[d.kkaa]||0)+1;});
 D.parcial_kkaa=Object.entries(pk).map(([k,v])=>({kkaa:k,c:v})).sort((a,b)=>b.c-a.c);
 
 const KS={'TIENDAS TAMBO S.A.C.':'TAMBO','CADENA DE COMERCIO PERU S.A.C.':'OXXO','COESTI S.A.':'PRIMAX','REPSOL COMERCIAL SAC':'REPSOL','GRIFO AVA':'AVA'};
 const ks=n=>KS[n]||n;
-
 let F={region:'',promotor:'',brand:'',kkaa:''};
 
 function populateFilters(){
   const s=document.getElementById('f-promotor');
-  [...new Set(D.promo_summary.map(p=>p.promotor))].sort().forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;s.appendChild(o);});
+  [...new Set(D.promo_summary.map(p=>p.promotor))].sort().forEach(p=>{
+    const o=document.createElement('option');o.value=p;o.textContent=p;s.appendChild(o);
+  });
 }
-
 function applyFilters(){
   F.region=document.getElementById('f-region').value;
   F.promotor=document.getElementById('f-promotor').value;
@@ -276,36 +425,27 @@ function resetFilters(){
   ['f-region','f-promotor','f-brand','f-kkaa'].forEach(id=>document.getElementById(id).value='');
   renderAll();
 }
-
-function fPromo(){
-  return D.promo_summary.filter(p=>{
-    if(F.region&&p.region!==F.region)return false;
-    if(F.promotor&&p.promotor!==F.promotor)return false;
-    if(F.kkaa){const sh=ks(F.kkaa).toUpperCase();if(!p.kacc.toUpperCase().includes(sh))return false;}
-    return true;
-  });
-}
-function fKkaa(){
-  return D.kkaa_ef.filter(k=>{
-    if(F.region&&k.REG!==F.region)return false;
-    if(F.kkaa&&k.CADENA!==F.kkaa)return false;
-    return true;
-  });
-}
-function fBrand(){
-  return D.brand_promo.filter(x=>{
-    if(F.promotor&&x.p!==F.promotor)return false;
-    if(F.brand&&x.b!==F.brand)return false;
-    return true;
-  });
-}
+function fPromo(){return D.promo_summary.filter(p=>{
+  if(F.region&&p.region!==F.region)return false;
+  if(F.promotor&&p.promotor!==F.promotor)return false;
+  if(F.kkaa){const sh=ks(F.kkaa).toUpperCase();if(!p.kacc.toUpperCase().includes(sh))return false;}
+  return true;
+});}
+function fKkaa(){return D.kkaa_ef.filter(k=>{
+  if(F.region&&k.REG!==F.region)return false;
+  if(F.kkaa&&k.CADENA!==F.kkaa)return false;
+  return true;
+});}
+function fBrand(){return D.brand_promo.filter(x=>{
+  if(F.promotor&&x.p!==F.promotor)return false;
+  if(F.brand&&x.b!==F.brand)return false;
+  return true;
+});}
 function fParcialPromo(){
   if(!F.promotor)return D.parcial_promo;
-  const f=D.parcial_promo.find(x=>x.p===F.promotor);
-  return f?[f]:[];
+  const f=D.parcial_promo.find(x=>x.p===F.promotor);return f?[f]:[];
 }
 
-// ---- KPIs ----
 function renderKPIs(){
   const p=fPromo();
   const as=p.reduce((s,x)=>s+x.assigned,0);
@@ -317,13 +457,13 @@ function renderKPIs(){
   const vuse=bp.filter(x=>x.b==='VUSE').reduce((s,x)=>s+x.c,0);
   const velo=bp.filter(x=>x.b==='VELO').reduce((s,x)=>s+x.c,0);
   const kpis=[
-    {icon:'📋',val:as,label:'PDVs Asignados',sub:'Universo total',c:'c-blue'},
+    {icon:'📋',val:as,label:'PDVs Asignados',sub:'Universo total',c:'c-navy'},
     {icon:'✅',val:ef,label:'PDVs Efectivos',sub:'Con conteo realizado',c:'c-green'},
     {icon:'❌',val:ne,label:'PDVs No Efectivos',sub:'Sin conteo (57 en total)',c:'c-red'},
-    {icon:'📊',val:pct+'%',label:'Tasa de Efectividad',sub:'Efectivos / Asignados',c:'c-green'},
-    {icon:'⚡',val:par,label:'Conteo Parcial',sub:'Efectivos con SKUs incompletos',c:'c-orange'},
-    {icon:'💨',val:vuse,label:'PDVs con VUSE',sub:'En BBDD de conteo',c:'c-blue'},
-    {icon:'🟡',val:velo,label:'PDVs con VELO',sub:'En BBDD de conteo',c:'c-yellow'},
+    {icon:'📊',val:pct+'%',label:'Tasa de Efectividad',sub:'Efectivos / Asignados',c:'c-gold'},
+    {icon:'⚡',val:par,label:'Conteo Parcial',sub:'SKUs incompletos',c:'c-orange'},
+    {icon:'💨',val:vuse,label:'PDVs con VUSE',sub:'En BBDD de conteo',c:'c-navy'},
+    {icon:'🟡',val:velo,label:'PDVs con VELO',sub:'En BBDD de conteo',c:'c-gold'},
   ];
   document.getElementById('kpi-section').innerHTML=kpis.map(k=>`
     <div class="kpi-card ${k.c}">
@@ -334,102 +474,81 @@ function renderKPIs(){
     </div>`).join('');
 }
 
-// ---- Region cards ----
 function renderRegionCards(){
   const regions=F.region?[F.region]:['LIMA','KC','NKC'];
-  const RC={LIMA:'var(--accent1)',KC:'var(--velo)',NKC:'var(--green)'};
+  const RC={LIMA:'#1B2F6E',KC:'#0E9B6A',NKC:'#C9A000'};
+  const RB={LIMA:'#EEF2FF',KC:'#D1FAE5',NKC:'#FEF9C3'};
   const REF={LIMA:{ef:886,ne:56,tot:942},KC:{ef:143,ne:0,tot:143},NKC:{ef:56,ne:1,tot:57}};
   let html='<div class="region-grid">';
   regions.forEach(reg=>{
     const promo=D.promo_summary.filter(p=>p.region===reg);
     if(F.promotor){
       const x=promo.find(p=>p.promotor===F.promotor);
-      if(!x){html+=`<div class="region-card"><div class="region-name" style="color:${RC[reg]}">${reg}</div><div style="font-size:11px;color:var(--muted)">Sin datos</div></div>`;return;}
+      if(!x){html+=`<div class="region-card" style="border-left-color:${RC[reg]}"><div class="region-name" style="color:${RC[reg]}">${reg}</div><div style="font-size:11px;color:var(--muted)">Sin datos</div></div>`;return;}
       const pct=x.assigned?(x.efectivas/x.assigned*100).toFixed(0):0;
-      html+=`<div class="region-card">
+      html+=`<div class="region-card" style="border-left-color:${RC[reg]};background:${RB[reg]}">
         <div class="region-name" style="color:${RC[reg]}">${reg}</div>
-        <div style="display:flex;gap:10px;font-size:11px">
+        <div style="display:flex;gap:10px;font-size:11px;font-weight:600">
           <span style="color:var(--green)">✅ ${x.efectivas}</span>
           <span style="color:var(--red)">❌ ${x.no_efectivas}</span>
           <span style="color:var(--muted)">📋 ${x.assigned}</span>
         </div>
         <div class="region-bar-track"><div class="region-bar-fill" style="width:${pct}%;background:${RC[reg]}"></div></div>
-        <div style="font-size:10px;color:var(--muted)">${pct}% efectividad</div>
+        <div style="font-size:10px;color:var(--muted);font-weight:600">${pct}% efectividad</div>
       </div>`;return;
     }
     const d=REF[reg];const pct=d.tot?(d.ef/d.tot*100).toFixed(1):0;
-    html+=`<div class="region-card">
+    html+=`<div class="region-card" style="border-left-color:${RC[reg]};background:${RB[reg]}">
       <div class="region-name" style="color:${RC[reg]}">${reg}</div>
-      <div style="display:flex;gap:10px;font-size:11px;margin-bottom:2px">
-        <span style="color:var(--green)">✅ ${d.ef} ef.</span>
-        <span style="color:var(--red)">❌ ${d.ne} no ef.</span>
-        <span style="color:var(--muted)">📋 ${d.tot} total</span>
+      <div style="display:flex;gap:10px;font-size:11px;font-weight:600;margin-bottom:2px">
+        <span style="color:var(--green)">✅ ${d.ef}</span>
+        <span style="color:var(--red)">❌ ${d.ne}</span>
+        <span style="color:var(--muted)">📋 ${d.tot}</span>
       </div>
       <div class="region-bar-track"><div class="region-bar-fill" style="width:${pct}%;background:${RC[reg]}"></div></div>
-      <div style="font-size:10px;color:var(--muted);margin-top:2px">${pct}% efectividad · ${promo.length} promotores</div>
+      <div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:2px">${pct}% efectividad · ${promo.length} promotores</div>
     </div>`;
   });
-  html+='</div>';
-  document.getElementById('region-cards').innerHTML=html;
+  document.getElementById('region-cards').innerHTML=html+'</div>';
 }
 
-// ---- Donut ----
 function renderDonut(){
   const p=fPromo();
   const ef=p.reduce((s,x)=>s+x.efectivas,0);
   const ne=p.reduce((s,x)=>s+x.no_efectivas,0);
   const par=fParcialPromo().reduce((s,x)=>s+x.c,0);
-  const efLimpio=Math.max(0,ef-par);
+  const efL=Math.max(0,ef-par);
   const tot=ef+ne;const pct=tot?(ef/tot*100).toFixed(1):0;
-  const segs=[{label:'Ef. Completo',val:efLimpio,color:'#10b981'},{label:'Conteo Parcial',val:par,color:'#f97316'},{label:'No Efectivos',val:ne,color:'#ef4444'}];
+  const segs=[{label:'Ef. Completo',val:efL,color:'#0E9B6A'},{label:'Conteo Parcial',val:par,color:'#D97706'},{label:'No Efectivos',val:ne,color:'#C93B3B'}];
   const r=60,cx=70,cy=70;let ang=-Math.PI/2,paths='';
   const tt=segs.reduce((s,x)=>s+x.val,0)||1;
   segs.forEach(sg=>{
     if(!sg.val)return;
     const a=sg.val/tt*2*Math.PI;
     const x1=cx+r*Math.cos(ang),y1=cy+r*Math.sin(ang),x2=cx+r*Math.cos(ang+a),y2=cy+r*Math.sin(ang+a);
-    paths+=`<path d="M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r},0,${a>Math.PI?1:0},1,${x2.toFixed(1)},${y2.toFixed(1)} Z" fill="${sg.color}" opacity="0.88"/>`;
+    paths+=`<path d="M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r},0,${a>Math.PI?1:0},1,${x2.toFixed(1)},${y2.toFixed(1)} Z" fill="${sg.color}" opacity="0.9"/>`;
     ang+=a;
   });
   document.getElementById('donut-wrap').innerHTML=`
     <div style="position:relative;flex-shrink:0">
       <svg viewBox="0 0 140 140" width="130" height="130">
-        <circle cx="70" cy="70" r="60" fill="var(--bg3)"/>${paths}
-        <circle cx="70" cy="70" r="38" fill="var(--card)"/>
+        <circle cx="70" cy="70" r="60" fill="#EBEEf7"/>${paths}
+        <circle cx="70" cy="70" r="38" fill="white"/>
       </svg>
       <div class="donut-center" style="top:8px;left:8px">
-        <div class="donut-center-val" style="color:var(--green)">${pct}%</div>
+        <div class="donut-center-val" style="color:var(--navy)">${pct}%</div>
         <div class="donut-center-label">efectividad</div>
       </div>
     </div>
     <div class="legend">
-      ${segs.filter(s=>s.val>0).map(s=>`<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div><span>${s.label}</span><span class="legend-val">${s.val}</span></div>`).join('')}
-      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Total asignados: <strong style="color:var(--text)">${tot}</strong></div>
+      ${segs.filter(s=>s.val>0).map(s=>`<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div><span style="color:var(--text2)">${s.label}</span><span class="legend-val">${s.val}</span></div>`).join('')}
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)">Total asignados: <strong style="color:var(--navy)">${tot}</strong></div>
     </div>`;
 }
 
-// ---- Promo table ----
-function renderPromoTable(){
-  const promo=fPromo().sort((a,b)=>b.assigned-a.assigned);
-  const RC={LIMA:'var(--accent1)',KC:'var(--velo)',NKC:'var(--green)'};
-  document.getElementById('promo-tbody').innerHTML=promo.map(p=>{
-    const pct=p.assigned?(p.efectivas/p.assigned*100).toFixed(0):0;
-    const cls=pct>=95?'pill-green':pct>=80?'pill-yellow':'pill-red';
-    return`<tr>
-      <td><strong>${p.promotor}</strong></td>
-      <td><span class="pill pill-blue" style="color:${RC[p.region]||'var(--muted)'}">${p.region}</span></td>
-      <td>${p.assigned}</td>
-      <td style="color:var(--green);font-weight:600">${p.efectivas}</td>
-      <td style="color:${p.no_efectivas>0?'var(--red)':'var(--muted)'};font-weight:600">${p.no_efectivas}</td>
-      <td><span class="pill ${cls}">${pct}%</span></td>
-    </tr>`;
-  }).join('');
-}
-
-// ---- Motivos ----
 function renderMotivos(){
   const max=Math.max(...D.motivos_agg.map(m=>m.count));
-  const MC={'NO PERMITE CONTEO':'#ef4444','LOCAL CERRADO':'#64748b','NO VENDE VUSE':'#10b981','STAFF OCUPADO':'#7c3aed','LOCAL EN INVENTARIO':'#f59e0b'};
+  const MC={'NO PERMITE CONTEO':'#C93B3B','LOCAL CERRADO':'#6B7A99','NO VENDE VUSE':'#0E9B6A','STAFF OCUPADO':'#243580','LOCAL EN INVENTARIO':'#D97706'};
   document.getElementById('motivos-bars').innerHTML=D.motivos_agg.map(m=>`
     <div class="bar-row">
       <div class="bar-label" title="${m.motivo}">${m.motivo}</div>
@@ -440,17 +559,16 @@ function renderMotivos(){
   const bp={};mf.forEach(d=>{bp[d.promotor]=(bp[d.promotor]||0)+1;});
   const top=Object.entries(bp).sort((a,b)=>b[1]-a[1]).slice(0,5);
   document.getElementById('motivos-detail').innerHTML=top.length?
-    `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;color:var(--muted)">Por Promotor (Top 5)</div>`+
-    top.map(([p,v])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px">${p}</span><span style="font-weight:600;color:var(--red)">${v}</span></div>`).join(''):'';
+    `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;color:var(--muted);font-weight:700">Por Promotor — Top 5</div>`+
+    top.map(([p,v])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--text2)">${p}</span><span style="font-weight:700;color:var(--red)">${v}</span></div>`).join(''):'';
 }
 
-// ---- KKAA ----
 function renderKkaa(){
   const data=fKkaa();const g={};
   data.forEach(k=>{g[ks(k.CADENA)]=(g[ks(k.CADENA)]||0)+k.count;});
   const sorted=Object.entries(g).sort((a,b)=>b[1]-a[1]);
   const max=sorted[0]?.[1]||1;
-  const cols=['#00d4ff','#f59e0b','#10b981','#ef4444','#7c3aed','#f97316','#06b6d4','#84cc16'];
+  const cols=['#1B2F6E','#C9A000','#0E9B6A','#C93B3B','#6B7A99','#D97706','#243580'];
   document.getElementById('kkaa-bars').innerHTML=sorted.map(([k,v],i)=>`
     <div class="bar-row">
       <div class="bar-label">${k}</div>
@@ -459,7 +577,6 @@ function renderKkaa(){
     </div>`).join('');
 }
 
-// ---- Weekly ----
 function renderWeekly(){
   const weeks=['SEM 1','SEM 2','SEM 3','SEM 4','SEM 5'];
   const bw={};
@@ -471,44 +588,31 @@ function renderWeekly(){
     const vh=Math.round((d.VUSE||0)/maxV*68);const vlh=Math.round((d.VELO||0)/maxV*68);
     html+=`<div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1">
       <div style="display:flex;gap:3px;align-items:flex-end;height:70px">
-        ${!F.brand||F.brand==='VUSE'?`<div style="width:16px;height:${Math.max(vh,3)}px;background:var(--vuse);border-radius:3px 3px 0 0" title="VUSE:${d.VUSE}"></div>`:''}
-        ${!F.brand||F.brand==='VELO'?`<div style="width:16px;height:${Math.max(vlh,3)}px;background:var(--velo);border-radius:3px 3px 0 0" title="VELO:${d.VELO}"></div>`:''}
+        ${!F.brand||F.brand==='VUSE'?`<div style="width:16px;height:${Math.max(vh,3)}px;background:#C9A000;border-radius:3px 3px 0 0" title="VUSE:${d.VUSE}"></div>`:''}
+        ${!F.brand||F.brand==='VELO'?`<div style="width:16px;height:${Math.max(vlh,3)}px;background:#8A94B0;border-radius:3px 3px 0 0" title="VELO:${d.VELO}"></div>`:''}
       </div>
-      <div style="font-size:9px;color:var(--muted)">${wk}</div>
-      <div style="font-size:10px;font-weight:600">${(d.VUSE||0)+(d.VELO||0)}</div>
+      <div style="font-size:9px;color:var(--muted);font-weight:600">${wk}</div>
+      <div style="font-size:10px;font-weight:700;color:var(--navy)">${(d.VUSE||0)+(d.VELO||0)}</div>
     </div>`;
   });
   document.getElementById('weekly-chart').innerHTML=html+'</div>';
 }
 
-// ---- SKU ----
 function renderSKU(){
   let data=F.brand?D.top_sku.filter(s=>s.brand===F.brand):D.top_sku;
   data=data.slice(0,8);const max=data[0]?.units||1;
-  const bc={VUSE:'var(--vuse)',VELO:'var(--velo)'};
+  const bc={VUSE:'#C9A000',VELO:'#6B7A99'};
   document.getElementById('sku-bars').innerHTML=data.map(s=>`
     <div class="bar-row">
-      <div class="bar-label" style="font-size:10px" title="${s.sku}">${s.sku}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${(s.units/max*100).toFixed(1)}%;background:${bc[s.brand]||'var(--accent1)'}"></div></div>
+      <div class="bar-label" style="font-size:10px" title="${s.brand} ${s.sku}">${s.sku}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(s.units/max*100).toFixed(1)}%;background:${bc[s.brand]||'var(--navy)'}"></div></div>
       <div class="bar-val" style="font-size:10px">${(s.units/1000).toFixed(1)}k</div>
     </div>`).join('');
 }
 
-// ---- Parcial promotor ----
-function renderParcialPromo(){
-  const data=fParcialPromo().sort((a,b)=>b.c-a.c);const max=data[0]?.c||1;
-  document.getElementById('parcial-promo').innerHTML=data.length?data.map(x=>`
-    <div class="bar-row">
-      <div class="bar-label">${x.p.split(' ')[0]}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${(x.c/max*100).toFixed(1)}%;background:var(--orange)"></div></div>
-      <div class="bar-val">${x.c}</div>
-    </div>`).join(''):'<div style="color:var(--muted);font-size:12px;padding:12px">Sin datos</div>';
-}
-
-// ---- Parcial KKAA ----
 function renderParcialKkaa(){
   const max=D.parcial_kkaa[0]?.c||1;
-  const cols=['#f97316','#00d4ff','#f59e0b','#10b981','#7c3aed','#ef4444'];
+  const cols=['#D97706','#C9A000','#0E9B6A','#1B2F6E','#C93B3B','#6B7A99'];
   document.getElementById('parcial-kkaa').innerHTML=D.parcial_kkaa.map((k,i)=>`
     <div class="bar-row">
       <div class="bar-label">${ks(k.kkaa)}</div>
@@ -517,7 +621,6 @@ function renderParcialKkaa(){
     </div>`).join('');
 }
 
-// ---- No Ef table ----
 function renderNoEfTable(){
   const search=document.getElementById('search-noef').value.toLowerCase();
   const mf=document.getElementById('f-motivo-noef').value;
@@ -528,18 +631,17 @@ function renderNoEfTable(){
     return true;
   });
   document.getElementById('noef-count').textContent=`${data.length} PDVs`;
-  const MC={'NO PERMITE CONTEO':'pill-red','LOCAL CERRADO':'pill-gray','NO VENDE VUSE':'pill-green','STAFF OCUPADO':'pill-blue','LOCAL EN INVENTARIO':'pill-yellow'};
+  const MC={'NO PERMITE CONTEO':'pill-red','LOCAL CERRADO':'pill-gray','NO VENDE VUSE':'pill-green','STAFF OCUPADO':'pill-navy','LOCAL EN INVENTARIO':'pill-orange'};
   document.getElementById('noef-tbody').innerHTML=data.map(d=>`
     <tr>
-      <td><strong style="font-size:11px">${d.POS}</strong></td>
-      <td><span class="pill pill-blue" style="font-size:10px">${ks(d.kkaa)}</span></td>
-      <td style="font-size:11px;color:var(--muted)">${d.promotor}</td>
-      <td style="font-size:11px">${d.ciudad||''}</td>
+      <td><strong style="font-size:11px;color:var(--navy)">${d.POS}</strong></td>
+      <td><span class="pill pill-navy" style="font-size:10px">${ks(d.kkaa)}</span></td>
+      <td style="font-size:11px;color:var(--text2)">${d.promotor}</td>
+      <td style="font-size:11px;color:var(--muted)">${d.ciudad||''}</td>
       <td><span class="pill ${MC[d.motivo]||'pill-gray'}" style="font-size:10px">${d.motivo}</span></td>
     </tr>`).join('');
 }
 
-// ---- Parcial table ----
 function renderParcialTable(){
   const search=document.getElementById('search-parcial').value.toLowerCase();
   let data=D.parcial_detail.filter(d=>{
@@ -550,19 +652,18 @@ function renderParcialTable(){
   document.getElementById('parcial-count').textContent=`${data.length} PDVs`;
   document.getElementById('parcial-tbody').innerHTML=data.map(d=>`
     <tr>
-      <td><strong style="font-size:11px">${d.POS}</strong></td>
-      <td><span class="pill pill-blue" style="font-size:10px">${ks(d.kkaa)}</span></td>
-      <td style="font-size:11px;color:var(--muted)">${d.promotor}</td>
-      <td style="font-size:11px">${d.ciudad||''}</td>
+      <td><strong style="font-size:11px;color:var(--navy)">${d.POS}</strong></td>
+      <td><span class="pill pill-navy" style="font-size:10px">${ks(d.kkaa)}</span></td>
+      <td style="font-size:11px;color:var(--text2)">${d.promotor}</td>
+      <td style="font-size:11px;color:var(--muted)">${d.ciudad||''}</td>
     </tr>`).join('');
 }
 
 function renderAll(){
-  renderKPIs();renderRegionCards();renderDonut();renderPromoTable();
-  renderMotivos();renderKkaa();renderWeekly();renderSKU();
-  renderParcialPromo();renderParcialKkaa();renderNoEfTable();renderParcialTable();
+  renderKPIs();renderRegionCards();renderDonut();renderMotivos();
+  renderKkaa();renderWeekly();renderSKU();
+  renderParcialKkaa();renderNoEfTable();renderParcialTable();
 }
-
 populateFilters();renderAll();
 </script>
 </body>
