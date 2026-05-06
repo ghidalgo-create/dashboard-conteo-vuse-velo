@@ -3,168 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Conteo VUSE / VELO — Marzo 2026 | TT Audit</title>
+<title>Dashboard Conteo VUSE / VELO | TT Audit</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy:      #1B2F6E;
-    --navy-dark: #111D47;
-    --navy-mid:  #243580;
-    --gold:      #F5C518;
-    --gold-dark: #C9A000;
-    --silver:    #6B7A99;
-    --bg:        #F4F6FB;
-    --bg2:       #EBEEf7;
-    --card:      #FFFFFF;
-    --border:    #D0D7EC;
-    --text:      #1B2F6E;
-    --text2:     #3A4A72;
-    --muted:     #6B7A99;
-    --green:     #0E9B6A;
-    --red:       #C93B3B;
-    --orange:    #D97706;
-    --white:     #FFFFFF;
-  }
+  :root{--navy:#1B2F6E;--navy-dark:#111D47;--navy-mid:#243580;--gold:#F5C518;--gold-dark:#C9A000;--silver:#6B7A99;--bg:#F4F6FB;--bg2:#EBEEf7;--card:#FFFFFF;--border:#D0D7EC;--text:#1B2F6E;--text2:#3A4A72;--muted:#6B7A99;--green:#0E9B6A;--red:#C93B3B;--orange:#D97706;}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;min-height:100vh;font-size:14px;}
 
-  /* ── HEADER ── */
-  .header{
-    background:var(--navy-dark);
-    border-bottom:3px solid var(--gold);
-    padding:0 32px;
-    display:flex;align-items:center;justify-content:space-between;
-    height:72px;
-    box-shadow:0 2px 12px rgba(17,29,71,0.18);
-    position:sticky;top:0;z-index:100;
-  }
+  /* HEADER */
+  .header{background:var(--navy-dark);border-bottom:3px solid var(--gold);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:72px;box-shadow:0 2px 12px rgba(17,29,71,0.18);position:sticky;top:0;z-index:100;}
   .header-left{display:flex;align-items:center;gap:20px;}
-  .logo-box{
-    background:#FFFFFF;
-    border-radius:8px;
-    padding:6px 12px;
-    display:flex;align-items:center;justify-content:center;
-    height:52px;
-    min-width:110px;
-    box-shadow:0 1px 4px rgba(0,0,0,0.15);
-  }
-  .logo-box img{
-    height:40px;
-    width:auto;
-    display:block;
-    object-fit:contain;
-  }
+  .logo-box{background:#fff;border-radius:8px;padding:6px 12px;display:flex;align-items:center;justify-content:center;height:52px;min-width:110px;box-shadow:0 1px 4px rgba(0,0,0,0.15);}
+  .logo-box img{height:40px;width:auto;display:block;object-fit:contain;}
   .header-sep{width:1px;height:40px;background:rgba(245,197,24,0.35);margin:0 4px;}
-  .header-text-title{
-    font-family:'Playfair Display',serif;
-    font-size:17px;font-weight:700;
-    color:#FFFFFF;
-    letter-spacing:0.2px;
-  }
+  .header-text-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;}
   .header-text-title em{color:var(--gold);font-style:normal;}
-  .header-text-sub{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;font-weight:400;}
-  .header-badge{
-    background:rgba(245,197,24,0.15);
-    border:1px solid rgba(245,197,24,0.45);
-    color:var(--gold);
-    font-size:11px;font-weight:700;
-    padding:5px 16px;border-radius:20px;
-    letter-spacing:0.8px;text-transform:uppercase;
-  }
+  .header-text-sub{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;}
 
-  /* ── FILTERS ── */
-  .filters-bar{
-    background:#FFFFFF;
-    border-bottom:1px solid var(--border);
-    padding:10px 32px;
-    display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;
-    box-shadow:0 1px 4px rgba(27,47,110,0.06);
-  }
+  /* MONTH SELECTOR */
+  .month-bar{background:#fff;border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;gap:16px;box-shadow:0 1px 4px rgba(27,47,110,0.06);}
+  .month-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);}
+  .month-btn{padding:8px 28px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;border:2px solid var(--navy);font-family:'Source Sans 3',sans-serif;transition:all 0.18s;letter-spacing:0.2px;}
+  .month-btn.active{background:var(--navy);color:#fff;box-shadow:0 2px 10px rgba(27,47,110,0.25);}
+  .month-btn.inactive{background:#fff;color:var(--navy);}
+  .month-btn:hover{transform:translateY(-1px);}
+
+  /* FILTERS */
+  .filters-bar{background:#fff;border-bottom:1px solid var(--border);padding:10px 32px;display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;box-shadow:0 1px 4px rgba(27,47,110,0.04);}
   .filter-group{display:flex;flex-direction:column;gap:3px;}
   .filter-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);}
-  select{
-    background:#F4F6FB;border:1px solid var(--border);
-    color:var(--text);padding:7px 12px;border-radius:6px;
-    font-size:13px;font-family:'Source Sans 3',sans-serif;cursor:pointer;min-width:155px;outline:none;
-    transition:border-color 0.2s;
-  }
+  select{background:#F4F6FB;border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:6px;font-size:13px;font-family:'Source Sans 3',sans-serif;cursor:pointer;min-width:155px;outline:none;}
   select:focus{border-color:var(--navy);}
-  .btn-reset{
-    background:#FEF2F2;border:1px solid #FECACA;
-    color:var(--red);padding:7px 14px;border-radius:6px;
-    font-size:12px;font-weight:700;cursor:pointer;
-    font-family:'Source Sans 3',sans-serif;
-    transition:all 0.15s;
-  }
-  .btn-reset:hover{background:#FEE2E2;}
+  .btn-reset{background:#FEF2F2;border:1px solid #FECACA;color:var(--red);padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Source Sans 3',sans-serif;}
 
-  /* ── MAIN ── */
+  /* MAIN */
   .main{padding:20px 32px 32px;}
+  .section-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--gold);display:inline-flex;align-items:center;gap:10px;width:100%;}
 
-  /* ── SECTION TITLE ── */
-  .section-title{
-    font-family:'Playfair Display',serif;
-    font-size:13px;font-weight:600;
-    color:var(--navy);
-    text-transform:uppercase;letter-spacing:1px;
-    margin-bottom:14px;padding-bottom:8px;
-    border-bottom:2px solid var(--gold);
-    display:inline-flex;align-items:center;gap:10px;
-    width:100%;
-  }
-
-  /* ── KPIs ── */
+  /* KPIs */
   .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:22px;}
-  .kpi-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:16px 18px;
-    position:relative;overflow:hidden;
-    box-shadow:0 1px 6px rgba(27,47,110,0.07);
-    transition:box-shadow 0.2s,transform 0.2s;
-  }
+  .kpi-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;box-shadow:0 1px 6px rgba(27,47,110,0.07);transition:box-shadow 0.2s,transform 0.2s;}
   .kpi-card:hover{box-shadow:0 4px 16px rgba(27,47,110,0.12);transform:translateY(-1px);}
   .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0;}
-  .c-gold::before{background:var(--gold);}
-  .c-green::before{background:var(--green);}
-  .c-red::before{background:var(--red);}
-  .c-navy::before{background:var(--navy);}
-  .c-orange::before{background:var(--orange);}
+  .c-gold::before{background:var(--gold-dark);} .c-green::before{background:var(--green);} .c-red::before{background:var(--red);} .c-navy::before{background:var(--navy);} .c-orange::before{background:var(--orange);}
   .kpi-icon{font-size:20px;margin-bottom:8px;}
   .kpi-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;margin-bottom:4px;color:var(--navy);}
   .kpi-label{font-size:12px;color:var(--muted);font-weight:600;}
   .kpi-sub{font-size:10px;color:var(--muted);margin-top:3px;}
 
-  /* ── GRIDS ── */
+  /* GRIDS */
   .g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
   .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:18px;}
 
-  /* ── CHART CARD ── */
-  .chart-card{
-    background:var(--card);border:1px solid var(--border);
-    border-radius:10px;padding:18px 20px;
-    box-shadow:0 1px 6px rgba(27,47,110,0.07);
-  }
-  .chart-title{
-    font-family:'Playfair Display',serif;
-    font-size:13px;font-weight:600;
-    margin-bottom:14px;color:var(--navy);
-    display:flex;align-items:center;gap:8px;
-    border-bottom:1px solid var(--border);
-    padding-bottom:10px;
-  }
+  /* CARDS */
+  .chart-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;box-shadow:0 1px 6px rgba(27,47,110,0.07);}
+  .chart-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;margin-bottom:14px;color:var(--navy);display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);padding-bottom:10px;}
   .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:inline-block;}
 
-  /* ── BARS ── */
+  /* BARS */
   .bar-chart{display:flex;flex-direction:column;gap:10px;}
   .bar-row{display:flex;align-items:center;gap:10px;}
   .bar-label{font-size:11px;color:var(--text2);width:130px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;}
   .bar-track{flex:1;background:var(--bg2);border-radius:4px;height:9px;overflow:hidden;}
-  .bar-fill{height:100%;border-radius:4px;transition:width 0.6s ease;}
+  .bar-fill{height:100%;border-radius:4px;transition:width 0.5s ease;}
   .bar-val{font-size:11px;font-weight:700;width:34px;text-align:right;flex-shrink:0;color:var(--navy);}
 
-  /* ── DONUT ── */
+  /* DONUT */
   .donut-wrap{display:flex;align-items:center;gap:24px;}
   .donut-center{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;width:110px;height:110px;text-align:center;}
   .donut-center-val{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;}
@@ -174,54 +78,31 @@
   .legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
   .legend-val{margin-left:auto;font-weight:700;font-size:13px;color:var(--navy);}
 
-  /* ── TABLE ── */
+  /* TABLE */
   .table-wrap{overflow-x:auto;overflow-y:auto;}
   table{width:100%;border-collapse:collapse;font-size:12px;}
-  thead th{
-    background:var(--bg2);color:var(--navy);font-size:10px;font-weight:700;
-    text-transform:uppercase;letter-spacing:0.6px;padding:9px 12px;
-    text-align:left;position:sticky;top:0;border-bottom:2px solid var(--border);
-  }
+  thead th{background:var(--bg2);color:var(--navy);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;padding:9px 12px;text-align:left;position:sticky;top:0;border-bottom:2px solid var(--border);}
   tbody tr{border-bottom:1px solid var(--border);}
   tbody tr:hover{background:#F0F4FF;}
   tbody td{padding:8px 12px;}
 
-  /* ── PILLS ── */
+  /* PILLS */
   .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;}
-  .pill-green{background:#D1FAE5;color:#065F46;}
-  .pill-red{background:#FEE2E2;color:#991B1B;}
-  .pill-orange{background:#FEF3C7;color:#92400E;}
-  .pill-gold{background:#FEF9C3;color:#854D0E;}
-  .pill-navy{background:#EEF2FF;color:var(--navy);}
-  .pill-gray{background:#F1F5F9;color:var(--muted);}
+  .pill-green{background:#D1FAE5;color:#065F46;} .pill-red{background:#FEE2E2;color:#991B1B;} .pill-orange{background:#FEF3C7;color:#92400E;} .pill-navy{background:#EEF2FF;color:var(--navy);} .pill-gray{background:#F1F5F9;color:var(--muted);}
 
-  /* ── REGION CARDS ── */
+  /* REGION */
   .region-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-  .region-card{
-    background:var(--bg2);border-radius:8px;padding:14px;
-    border:1px solid var(--border);border-left:3px solid var(--navy);
-  }
+  .region-card{background:var(--bg2);border-radius:8px;padding:14px;border:1px solid var(--border);border-left:3px solid var(--navy);}
   .region-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:8px;}
   .region-bar-track{background:rgba(27,47,110,0.1);border-radius:4px;height:6px;overflow:hidden;margin:6px 0 3px;}
   .region-bar-fill{height:100%;border-radius:4px;}
 
-  /* ── INPUT ── */
-  input[type=text]{
-    background:#F4F6FB;border:1px solid var(--border);color:var(--text);
-    padding:7px 12px;border-radius:6px;font-size:13px;
-    font-family:'Source Sans 3',sans-serif;outline:none;
-  }
+  /* INPUT */
+  input[type=text]{background:#F4F6FB;border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:6px;font-size:13px;font-family:'Source Sans 3',sans-serif;outline:none;}
   input[type=text]:focus{border-color:var(--navy);}
 
-  /* ── FOOTER ── */
-  .footer{
-    background:var(--navy-dark);
-    border-top:3px solid var(--gold);
-    padding:14px 32px;
-    display:flex;align-items:center;justify-content:space-between;
-    font-size:11px;color:rgba(255,255,255,0.5);
-    margin-top:10px;
-  }
+  /* FOOTER */
+  .footer{background:var(--navy-dark);border-top:3px solid var(--gold);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.5);margin-top:10px;}
   .footer span{color:var(--gold);font-weight:700;}
 
   ::-webkit-scrollbar{width:4px;height:4px;}
@@ -235,19 +116,22 @@
 <div class="header">
   <div class="header-left">
     <div class="logo-box">
-      <img
-        src="data:image/jpeg;base64,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"
-        alt="TT Audit — Trade Marketing Solutions"
-        onerror="this.onerror=null;this.parentElement.innerHTML='<span style=\'font-family:serif;font-weight:700;color:#1B2F6E;font-size:13px;\'>TT AUDIT</span>';"
-      />
+      <img src="data:image/jpeg;base64,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" alt="TT Audit" onerror="this.onerror=null;this.parentElement.innerHTML='<span style=\'font-family:serif;font-weight:700;color:#1B2F6E;font-size:13px;\'>TT AUDIT</span>';">
     </div>
     <div class="header-sep"></div>
     <div>
       <div class="header-text-title">Dashboard Conteo <em>VUSE</em> / <em>VELO</em></div>
-      <div class="header-text-sub">Reporte Marzo 2026 · Trade Marketing Solutions</div>
+      <div class="header-text-sub">Trade Marketing Solutions · TT Audit</div>
     </div>
   </div>
-  <div class="header-badge">Marzo 2026</div>
+</div>
+
+<!-- MONTH SELECTOR -->
+<div class="month-bar">
+  <div class="month-label">Seleccionar mes:</div>
+  <button id="btn-marzo" class="month-btn active" onclick="setMonth('MARZO')">Marzo 2026</button>
+  <button id="btn-abril" class="month-btn inactive" onclick="setMonth('ABRIL')">Abril 2026</button>
+  <div id="mes-badge" style="margin-left:auto;background:rgba(27,47,110,0.08);border:1px solid var(--border);color:var(--navy);font-size:11px;font-weight:700;padding:5px 16px;border-radius:20px;letter-spacing:0.8px;text-transform:uppercase;">Marzo 2026</div>
 </div>
 
 <!-- FILTERS -->
@@ -294,7 +178,6 @@
 
 <!-- MAIN -->
 <div class="main">
-
   <div class="section-title">Resumen General</div>
   <div class="kpi-grid" id="kpi-section"></div>
 
@@ -311,7 +194,7 @@
 
   <div class="g2">
     <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--red)"></span>Motivos No Efectivos <span style="font-size:10px;color:var(--muted);font-weight:400;margin-left:4px">(57 PDVs total)</span></div>
+      <div class="chart-title"><span class="dot" style="background:var(--red)"></span>Motivos No Efectivos</div>
       <div id="motivos-bars" class="bar-chart"></div>
       <div id="motivos-detail" style="margin-top:16px;font-size:11px;color:var(--muted)"></div>
     </div>
@@ -339,133 +222,198 @@
   <div class="section-title" style="margin-top:4px">Conteo Parcial — PDVs con conteo incompleto de SKUs</div>
   <div class="g2">
     <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>Conteo Parcial por KKAA <span style="font-size:10px;color:var(--muted);font-weight:400;margin-left:4px">(211 PDVs únicos)</span></div>
-      <div id="parcial-kkaa" class="bar-chart"></div>
+      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>Conteo Parcial por Promotor</div>
+      <div id="parcial-promo" class="bar-chart"></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>PDVs con Conteo Parcial — Detalle</div>
+      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>Conteo Parcial por KKAA</div>
+      <div id="parcial-kkaa" class="bar-chart"></div>
+    </div>
+  </div>
+
+  <div class="section-title">Detalle de PDVs</div>
+  <div class="g2">
+    <div class="chart-card">
+      <div class="chart-title"><span class="dot" style="background:var(--red)"></span>PDVs No Efectivos</div>
+      <div style="display:flex;gap:10px;margin-bottom:10px;align-items:center;flex-wrap:wrap;">
+        <input type="text" id="search-noef" placeholder="🔍 Buscar tienda o promotor…" oninput="renderNoEfTable()" style="width:210px;">
+        <select id="f-motivo-noef" onchange="renderNoEfTable()" style="min-width:160px;">
+          <option value="">Todos los motivos</option>
+        </select>
+        <span id="noef-count" style="font-size:11px;color:var(--muted)"></span>
+      </div>
+      <div class="table-wrap" style="max-height:270px;">
+        <table><thead><tr><th>POS</th><th>KKAA</th><th>Promotor</th><th>Ciudad</th><th>Motivo</th></tr></thead>
+        <tbody id="noef-tbody"></tbody></table>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title"><span class="dot" style="background:var(--orange)"></span>PDVs Conteo Parcial</div>
       <div style="display:flex;gap:10px;margin-bottom:10px;align-items:center;">
         <input type="text" id="search-parcial" placeholder="🔍 Buscar tienda o promotor…" oninput="renderParcialTable()" style="width:210px;">
         <span id="parcial-count" style="font-size:11px;color:var(--muted);margin-left:auto"></span>
       </div>
-      <div class="table-wrap" style="max-height:250px;">
-        <table>
-          <thead><tr><th>POS</th><th>KKAA</th><th>Promotor</th><th>Ciudad</th></tr></thead>
-          <tbody id="parcial-tbody"></tbody>
-        </table>
+      <div class="table-wrap" style="max-height:270px;">
+        <table><thead><tr><th>POS</th><th>KKAA</th><th>Promotor</th><th>Ciudad</th></tr></thead>
+        <tbody id="parcial-tbody"></tbody></table>
       </div>
     </div>
   </div>
-
-  <div class="section-title">PDVs No Efectivos — Detalle Completo</div>
-  <div class="chart-card">
-    <div style="display:flex;gap:12px;margin-bottom:12px;align-items:center;flex-wrap:wrap;">
-      <input type="text" id="search-noef" placeholder="🔍 Buscar tienda, promotor o cadena…" oninput="renderNoEfTable()" style="width:260px;">
-      <select id="f-motivo-noef" onchange="renderNoEfTable()" style="min-width:180px;">
-        <option value="">Todos los motivos</option>
-        <option value="NO PERMITE CONTEO">No Permite Conteo</option>
-        <option value="LOCAL CERRADO">Local Cerrado</option>
-        <option value="NO VENDE VUSE">No Vende VUSE</option>
-        <option value="STAFF OCUPADO">Staff Ocupado</option>
-        <option value="LOCAL EN INVENTARIO">Local en Inventario</option>
-      </select>
-      <span id="noef-count" style="font-size:11px;color:var(--muted);margin-left:auto"></span>
-    </div>
-    <div class="table-wrap" style="max-height:300px;">
-      <table>
-        <thead><tr><th>POS</th><th>KKAA</th><th>Promotor</th><th>Ciudad</th><th>Motivo</th></tr></thead>
-        <tbody id="noef-tbody"></tbody>
-      </table>
-    </div>
-  </div>
-
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
-  <div>© 2026 <span>TT Audit</span> · Trade Marketing Solutions — Reporte Conteo Marzo 2026</div>
-  <div>Datos al <span>31/03/2026</span></div>
+  <div>© 2026 <span>TT Audit</span> · Trade Marketing Solutions</div>
+  <div id="footer-date">Datos al 31/03/2026</div>
 </div>
 
 <script>
-const D = {
-  promo_summary:[{"promotor":"CECILIA GUERRERO","assigned":41,"efectivas":41,"no_efectivas":0,"region":"KC","kacc":"AVA,PRIMAX,TAMBO,REPSOL"},{"promotor":"EDWARD RODRIGUEZ","assigned":88,"efectivas":88,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,PRIMAX,REPSOL,AVA,OXXO"},{"promotor":"EMMELINE PEREYRA","assigned":12,"efectivas":12,"no_efectivas":0,"region":"NKC","kacc":"TAMBO,PRIMAX"},{"promotor":"FLAVIO TRIGOSO","assigned":2,"efectivas":2,"no_efectivas":0,"region":"NKC","kacc":"PRIMAX"},{"promotor":"GIANFRANCO AREVALO","assigned":18,"efectivas":18,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,PRIMAX,OXXO"},{"promotor":"JENNY VALLADARES","assigned":95,"efectivas":92,"no_efectivas":3,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL,AVA"},{"promotor":"JESSENIA ARELLANO","assigned":86,"efectivas":71,"no_efectivas":15,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL"},{"promotor":"JHORDAN LOPEZ","assigned":6,"efectivas":6,"no_efectivas":0,"region":"KC","kacc":"PRIMAX,TAMBO"},{"promotor":"JOSE BENDEZÚ","assigned":98,"efectivas":89,"no_efectivas":9,"region":"LIMA","kacc":"TAMBO,OXXO,AVA,PRIMAX,REPSOL"},{"promotor":"KELLY BAZAN","assigned":20,"efectivas":20,"no_efectivas":0,"region":"KC","kacc":"PRIMAX,TAMBO,AVA,REPSOL"},{"promotor":"KIARA PANDURO","assigned":3,"efectivas":3,"no_efectivas":0,"region":"NKC","kacc":"PRIMAX"},{"promotor":"MILEYDI BALCAZAR","assigned":128,"efectivas":117,"no_efectivas":11,"region":"LIMA","kacc":"OXXO,TAMBO,PRIMAX,AVA,REPSOL"},{"promotor":"RENATO BRICEÑO","assigned":17,"efectivas":17,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL"},{"promotor":"SANDRA VILLAFANA","assigned":6,"efectivas":6,"no_efectivas":0,"region":"NKC","kacc":"TAMBO,PRIMAX"},{"promotor":"SARAI AZO","assigned":28,"efectivas":28,"no_efectivas":0,"region":"KC","kacc":"PRIMAX,AVA,TAMBO"},{"promotor":"SHEILA CASANOVA","assigned":91,"efectivas":90,"no_efectivas":1,"region":"LIMA","kacc":"REPSOL,TAMBO,OXXO,PRIMAX"},{"promotor":"SINTHIA IZAGUIRRE","assigned":20,"efectivas":20,"no_efectivas":0,"region":"NKC","kacc":"PRIMAX,OXXO,TAMBO"},{"promotor":"STEPHANY APUMAYTA","assigned":118,"efectivas":102,"no_efectivas":16,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL,AVA"},{"promotor":"VALERIA HUAMAN","assigned":48,"efectivas":48,"no_efectivas":0,"region":"KC","kacc":"TAMBO,OXXO,REPSOL,PRIMAX,AVA"},{"promotor":"WILLGERSON PAJITA","assigned":96,"efectivas":96,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL,AVA"},{"promotor":"YAQUELIN BORJA","assigned":107,"efectivas":106,"no_efectivas":1,"region":"LIMA","kacc":"OXXO,PRIMAX,TAMBO,REPSOL,AVA"},{"promotor":"YUBICSA ANGELES","assigned":14,"efectivas":13,"no_efectivas":1,"region":"NKC","kacc":"PRIMAX,TAMBO,REPSOL,AVA"}],
-  motivos_agg:[{"motivo":"NO PERMITE CONTEO","count":49},{"motivo":"LOCAL CERRADO","count":3},{"motivo":"NO VENDE VUSE","count":2},{"motivo":"STAFF OCUPADO","count":2},{"motivo":"LOCAL EN INVENTARIO","count":1}],
-  motivos_detail:[{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CALDERON","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CANDAMO","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHICLAYO","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ROETGEN","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - EL AVION","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - LIMATAMBO2","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ANGAMOS-C25","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA AVIACION","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PRIMAVERA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - PRINCIPAL","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - 06 DE AGOSTO","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - SANTA MARIA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - TENAUD","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - AREQUIPA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ANGAMOS-C4","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - INCLAN","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ORDOÑEZ","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - HUAYLAS-C1","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - HUAYLAS-C10","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ELSOL-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - GCIVIL-C7","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANPEDRO-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REVOLUCION 2-VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REVOLUCION-C18 VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VALLEJO","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - LIMAVES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REPUBLICANA-VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CHORRILLOS-C2","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - GUARDIAPERUANA-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ALAMEDASUR-C8","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ALAMEDA-SUR","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VILLA1","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - AMERICA-SJM","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CALLE-A","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - BOLIVAR 2","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VENEZUELA-C11","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VENEZUELA-C9","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - UGARTE-C13","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ROMA","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SNMARCOS","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANCHEZCARRION-C2","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - PIEROLA","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - BRASIL C13","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CONQUISTADORES-C1","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S BAHIA","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - AREQUIPA-C25","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - PETIT-C26","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - MANSICHE C2 TRUJILLO","promotor":"CECILIA GUERRERO","motivo":"NO PERMITE CONTEO","ciudad":"TRUJILLO"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - CALLE DERECHA","promotor":"YUBICSA ANGELES","motivo":"NO VENDE VUSE","ciudad":"HUARAL"},{"kkaa":"INDELFI","POS":"INDELFI LOS PORTALES - TRUJILLO","promotor":"CECILIA GUERRERO","motivo":"NO VENDE VUSE","ciudad":"TRUJILLO"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - PANAMERICANA LURIN","promotor":"GIANFRANCO AREVALO","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANTAROSA-LURIN","promotor":"GIANFRANCO AREVALO","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - DULANTO-C14","promotor":"SHEILA CASANOVA","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ELIASAGUIRRE-C3-CHICLAYO","promotor":"KELLY BAZAN","motivo":"STAFF OCUPADO","ciudad":"CHICLAYO"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA EUCALIPTOS","promotor":"EDWARD RODRIGUEZ","motivo":"STAFF OCUPADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - RINCONADA","promotor":"EDWARD RODRIGUEZ","motivo":"LOCAL EN INVENTARIO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA CARGO CITY","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S QUILCA","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA HABICH","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"}],
-  kkaa_ef:[{"CADENA":"CADENA DE COMERCIO PERU S.A.C.","REG":"KC","count":20},{"CADENA":"CADENA DE COMERCIO PERU S.A.C.","REG":"LIMA","count":181},{"CADENA":"CADENA DE COMERCIO PERU S.A.C.","REG":"NKC","count":3},{"CADENA":"COESTI S.A.","REG":"KC","count":40},{"CADENA":"COESTI S.A.","REG":"LIMA","count":109},{"CADENA":"COESTI S.A.","REG":"NKC","count":7},{"CADENA":"GRIFO AVA","REG":"KC","count":9},{"CADENA":"GRIFO AVA","REG":"LIMA","count":15},{"CADENA":"GRIFO AVA","REG":"NKC","count":2},{"CADENA":"INDELFI","REG":"KC","count":2},{"CADENA":"INDELFI","REG":"LIMA","count":1},{"CADENA":"INDELFI","REG":"NKC","count":1},{"CADENA":"LAGARDARE","REG":"KC","count":2},{"CADENA":"RAPPI","REG":"KC","count":2},{"CADENA":"REPSOL COMERCIAL SAC","REG":"KC","count":4},{"CADENA":"REPSOL COMERCIAL SAC","REG":"LIMA","count":44},{"CADENA":"REPSOL COMERCIAL SAC","REG":"NKC","count":1},{"CADENA":"TIENDAS TAMBO S.A.C.","REG":"KC","count":71},{"CADENA":"TIENDAS TAMBO S.A.C.","REG":"LIMA","count":530},{"CADENA":"TIENDAS TAMBO S.A.C.","REG":"NKC","count":46}],
-  weekly:[{"s":"SEM 1","b":"VELO","c":86},{"s":"SEM 1","b":"VUSE","c":391},{"s":"SEM 2","b":"VELO","c":33},{"s":"SEM 2","b":"VUSE","c":287},{"s":"SEM 3","b":"VELO","c":43},{"s":"SEM 3","b":"VUSE","c":142},{"s":"SEM 4","b":"VELO","c":20},{"s":"SEM 4","b":"VUSE","c":169},{"s":"SEM 5","b":"VELO","c":7},{"s":"SEM 5","b":"VUSE","c":57}],
-  brand_promo:[{"p":"CECILIA GUERRERO","b":"VELO","c":14},{"p":"CECILIA GUERRERO","b":"VUSE","c":44},{"p":"EDWARD RODRIGUEZ","b":"VELO","c":34},{"p":"EDWARD RODRIGUEZ","b":"VUSE","c":89},{"p":"EMMELINE PEREYRA","b":"VUSE","c":12},{"p":"GIANFRANCO AREVALO","b":"VUSE","c":18},{"p":"JENNY VALLADARES","b":"VELO","c":58},{"p":"JENNY VALLADARES","b":"VUSE","c":92},{"p":"JESSENIA ARELLANO","b":"VELO","c":8},{"p":"JESSENIA ARELLANO","b":"VUSE","c":71},{"p":"JOSE BENDEZÚ","b":"VELO","c":84},{"p":"JOSE BENDEZÚ","b":"VUSE","c":89},{"p":"KELLY BAZAN","b":"VELO","c":2},{"p":"KELLY BAZAN","b":"VUSE","c":20},{"p":"MILEYDI BALCAZAR","b":"VELO","c":45},{"p":"MILEYDI BALCAZAR","b":"VUSE","c":116},{"p":"RENATO BRICEÑO","b":"VELO","c":10},{"p":"RENATO BRICEÑO","b":"VUSE","c":15},{"p":"SARAI AZO","b":"VELO","c":21},{"p":"SARAI AZO","b":"VUSE","c":30},{"p":"SHEILA CASANOVA","b":"VELO","c":27},{"p":"SHEILA CASANOVA","b":"VUSE","c":90},{"p":"SINTHIA IZAGUIRRE","b":"VELO","c":3},{"p":"SINTHIA IZAGUIRRE","b":"VUSE","c":20},{"p":"STEPHANY APUMAYTA","b":"VELO","c":1},{"p":"STEPHANY APUMAYTA","b":"VUSE","c":103},{"p":"VALERIA HUAMAN","b":"VELO","c":24},{"p":"VALERIA HUAMAN","b":"VUSE","c":49},{"p":"WILLGERSON PAJITA","b":"VELO","c":46},{"p":"WILLGERSON PAJITA","b":"VUSE","c":96},{"p":"YAQUELIN BORJA","b":"VELO","c":97},{"p":"YAQUELIN BORJA","b":"VUSE","c":105},{"p":"YUBICSA ANGELES","b":"VELO","c":1},{"p":"YUBICSA ANGELES","b":"VUSE","c":13}],
-  top_sku:[{"brand":"VUSE","sku":"GRAPE ICE 1K","units":3888},{"brand":"VUSE","sku":"GREEN APPLE 1K","units":3744},{"brand":"VUSE","sku":"WATERMELON ICE 1K","units":3370},{"brand":"VUSE","sku":"BERRY BLEND 1K","units":3355},{"brand":"VUSE","sku":"PEPPERMINT ICE 1K","units":3003},{"brand":"VUSE","sku":"PEPPERMINT ICE 3K","units":2519},{"brand":"VUSE","sku":"STRAWBERRY ICE 1K","units":2418},{"brand":"VELO","sku":"UVA MORADA 6MG","units":1628},{"brand":"VELO","sku":"MENTA FRESCA 6MG","units":1616},{"brand":"VELO","sku":"UVA MORADA 4MG","units":1542},{"brand":"VELO","sku":"SANDIA FRESCA 4MG","units":1539},{"brand":"VELO","sku":"MENTA FRESCA 4MG","units":1513}],
-  parcial_promo:[{"p":"MILEYDI BALCAZAR","c":74},{"p":"STEPHANY APUMAYTA","c":39},{"p":"JESSENIA ARELLANO","c":32},{"p":"YAQUELIN BORJA","c":27},{"p":"JENNY VALLADARES","c":15},{"p":"EMMELINE PEREYRA","c":5},{"p":"WILLGERSON PAJITA","c":5},{"p":"EDWARD RODRIGUEZ","c":4},{"p":"KIARA PANDURO","c":3},{"p":"JOSE BENDEZÚ","c":2},{"p":"RENATO BRICEÑO","c":2},{"p":"KELLY BAZAN","c":1},{"p":"SARAI AZO","c":1},{"p":"SINTHIA IZAGUIRRE","c":1}],
-  parcial_detail:[{"kkaa":"GRIFO AVA","POS":"AVA - ARAMBURU","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - BARRANCO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - BENAVIDES","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - ESPINAR","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - LA PUNTA","promotor":"JENNY VALLADARES","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - MONTERRICO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - TELLO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - DASSO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ANTERQUERA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - AREQUIPA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ARONA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - AYACUCHO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CAMELIAS","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CASINELLI","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHICLAYO","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHOCAVENTO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CLEMENTE","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - COSTA RICA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - GHROMANN","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - IQUITOS","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - MARTIN","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - MERINO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - MORE","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - NEGOCIOS","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - SALAVERRY","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - SAUCO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - SORIA","promotor":"EDWARD RODRIGUEZ","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - TREE","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - VILLAR","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ORUÉ","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - HIGH LINE","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - CRUZ DEL SUR","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S AURORA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S EL ROSARIO","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S ESTRELLA","promotor":"EMMELINE PEREYRA","ciudad":"CHINCHA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S LA CALERA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S REPUBLICA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S SAN ISIDRO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S SAN LUIS 2","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO ARAMBURU 1","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PANORAMA","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PARDO","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO RICARDO PALMA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO SALAVERRY 3","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - PRIMAVERA 2","promotor":"SINTHIA IZAGUIRRE","ciudad":"ICA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - EL PARQUE","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - PARQUE SUR","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - SPRINT","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - TIKI TOO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - 28DJULIO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - 28DJULIO-C6","promotor":"YAQUELIN BORJA","ciudad":"LIMA"}]
+// ================================================================
+// DATA
+// ================================================================
+const MESES = {
+  MARZO: {
+    label: 'Marzo 2026', fecha: '31/03/2026',
+    total_assigned:1142,total_ef:1085,total_noef:57,total_parcial:211,vuse_count:1089,velo_count:481,
+    regions:{LIMA:{ef:886,ne:56,tot:942},KC:{ef:143,ne:0,tot:143},NKC:{ef:56,ne:1,tot:57}},
+    promo_summary:[{"promotor":"CECILIA GUERRERO","assigned":41,"efectivas":41,"no_efectivas":0,"region":"KC","kacc":"AVA,PRIMAX,TAMBO,REPSOL"},{"promotor":"EDWARD RODRIGUEZ","assigned":88,"efectivas":88,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,PRIMAX,REPSOL,AVA,OXXO"},{"promotor":"EMMELINE PEREYRA","assigned":12,"efectivas":12,"no_efectivas":0,"region":"NKC","kacc":"TAMBO,PRIMAX"},{"promotor":"FLAVIO TRIGOSO","assigned":2,"efectivas":2,"no_efectivas":0,"region":"NKC","kacc":"PRIMAX"},{"promotor":"GIANFRANCO AREVALO","assigned":18,"efectivas":18,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,PRIMAX,OXXO"},{"promotor":"JENNY VALLADARES","assigned":95,"efectivas":92,"no_efectivas":3,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL,AVA"},{"promotor":"JESSENIA ARELLANO","assigned":86,"efectivas":71,"no_efectivas":15,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL"},{"promotor":"JHORDAN LOPEZ","assigned":6,"efectivas":6,"no_efectivas":0,"region":"KC","kacc":"PRIMAX,TAMBO"},{"promotor":"JOSE BENDEZÚ","assigned":98,"efectivas":89,"no_efectivas":9,"region":"LIMA","kacc":"TAMBO,OXXO,AVA,PRIMAX,REPSOL"},{"promotor":"KELLY BAZAN","assigned":20,"efectivas":20,"no_efectivas":0,"region":"KC","kacc":"PRIMAX,TAMBO,AVA,REPSOL"},{"promotor":"KIARA PANDURO","assigned":3,"efectivas":3,"no_efectivas":0,"region":"NKC","kacc":"PRIMAX"},{"promotor":"MILEYDI BALCAZAR","assigned":128,"efectivas":117,"no_efectivas":11,"region":"LIMA","kacc":"OXXO,TAMBO,PRIMAX,AVA,REPSOL"},{"promotor":"RENATO BRICEÑO","assigned":17,"efectivas":17,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL"},{"promotor":"SANDRA VILLAFANA","assigned":6,"efectivas":6,"no_efectivas":0,"region":"NKC","kacc":"TAMBO,PRIMAX"},{"promotor":"SARAI AZO","assigned":28,"efectivas":28,"no_efectivas":0,"region":"KC","kacc":"PRIMAX,AVA,TAMBO"},{"promotor":"SHEILA CASANOVA","assigned":91,"efectivas":90,"no_efectivas":1,"region":"LIMA","kacc":"REPSOL,TAMBO,OXXO,PRIMAX"},{"promotor":"SINTHIA IZAGUIRRE","assigned":20,"efectivas":20,"no_efectivas":0,"region":"NKC","kacc":"PRIMAX,OXXO,TAMBO"},{"promotor":"STEPHANY APUMAYTA","assigned":118,"efectivas":102,"no_efectivas":16,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL,AVA"},{"promotor":"VALERIA HUAMAN","assigned":48,"efectivas":48,"no_efectivas":0,"region":"KC","kacc":"TAMBO,OXXO,REPSOL,PRIMAX,AVA"},{"promotor":"WILLGERSON PAJITA","assigned":96,"efectivas":96,"no_efectivas":0,"region":"LIMA","kacc":"TAMBO,OXXO,PRIMAX,REPSOL,AVA"},{"promotor":"YAQUELIN BORJA","assigned":107,"efectivas":106,"no_efectivas":1,"region":"LIMA","kacc":"OXXO,PRIMAX,TAMBO,REPSOL,AVA"},{"promotor":"YUBICSA ANGELES","assigned":14,"efectivas":13,"no_efectivas":1,"region":"NKC","kacc":"PRIMAX,TAMBO,REPSOL,AVA"}],
+    motivos_agg:[{"motivo":"NO PERMITE CONTEO","count":49},{"motivo":"LOCAL CERRADO","count":3},{"motivo":"NO VENDE VUSE","count":2},{"motivo":"STAFF OCUPADO","count":2},{"motivo":"LOCAL EN INVENTARIO","count":1}],
+    motivos_detail:[{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CALDERON","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CANDAMO","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CHICLAYO","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ROETGEN","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - EL AVION","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - LIMATAMBO2","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ANGAMOS-C25","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA AVIACION","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - LISTO PRIMAVERA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - PRINCIPAL","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - 06 DE AGOSTO","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - SANTA MARIA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - TENAUD","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - AREQUIPA","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ANGAMOS-C4","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - INCLAN","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ORDOÑEZ","promotor":"STEPHANY APUMAYTA","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - HUAYLAS-C1","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - HUAYLAS-C10","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ELSOL-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - GCIVIL-C7","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANPEDRO-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REVOLUCION 2-VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REVOLUCION-C18 VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VALLEJO","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - LIMAVES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - REPUBLICANA-VES","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CHORRILLOS-C2","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - GUARDIAPERUANA-CHORRILLOS","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ALAMEDASUR-C8","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ALAMEDA-SUR","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VILLA1","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - AMERICA-SJM","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CALLE-A","promotor":"JESSENIA ARELLANO","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"REPSOL COMERCIAL SAC","POS":"REPSOL - BOLIVAR 2","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VENEZUELA-C11","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - VENEZUELA-C9","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - UGARTE-C13","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ROMA","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SNMARCOS","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANCHEZCARRION-C2","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - PIEROLA","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - BRASIL C13","promotor":"JOSE BENDEZÚ","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - CONQUISTADORES-C1","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S BAHIA","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - AREQUIPA-C25","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - PETIT-C26","promotor":"MILEYDI BALCAZAR","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - MANSICHE C2 TRUJILLO","promotor":"CECILIA GUERRERO","motivo":"NO PERMITE CONTEO","ciudad":"TRUJILLO"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - CALLE DERECHA","promotor":"YUBICSA ANGELES","motivo":"NO VENDE VUSE","ciudad":"HUARAL"},{"kkaa":"INDELFI","POS":"INDELFI LOS PORTALES - TRUJILLO","promotor":"CECILIA GUERRERO","motivo":"NO VENDE VUSE","ciudad":"TRUJILLO"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - PANAMERICANA LURIN","promotor":"GIANFRANCO AREVALO","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - SANTAROSA-LURIN","promotor":"GIANFRANCO AREVALO","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - DULANTO-C14","promotor":"SHEILA CASANOVA","motivo":"LOCAL CERRADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - ELIASAGUIRRE-C3-CHICLAYO","promotor":"KELLY BAZAN","motivo":"STAFF OCUPADO","ciudad":"CHICLAYO"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA EUCALIPTOS","promotor":"EDWARD RODRIGUEZ","motivo":"STAFF OCUPADO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - RINCONADA","promotor":"EDWARD RODRIGUEZ","motivo":"LOCAL EN INVENTARIO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA CARGO CITY","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S QUILCA","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - TDA HABICH","promotor":"JENNY VALLADARES","motivo":"NO PERMITE CONTEO","ciudad":"LIMA"}],
+    kkaa_ef:[{"CADENA":"CADENA DE COMERCIO PERU S.A.C.","REG":"KC","count":20},{"CADENA":"CADENA DE COMERCIO PERU S.A.C.","REG":"LIMA","count":181},{"CADENA":"CADENA DE COMERCIO PERU S.A.C.","REG":"NKC","count":3},{"CADENA":"COESTI S.A.","REG":"KC","count":40},{"CADENA":"COESTI S.A.","REG":"LIMA","count":109},{"CADENA":"COESTI S.A.","REG":"NKC","count":7},{"CADENA":"GRIFO AVA","REG":"KC","count":9},{"CADENA":"GRIFO AVA","REG":"LIMA","count":15},{"CADENA":"GRIFO AVA","REG":"NKC","count":2},{"CADENA":"INDELFI","REG":"KC","count":2},{"CADENA":"INDELFI","REG":"LIMA","count":1},{"CADENA":"INDELFI","REG":"NKC","count":1},{"CADENA":"LAGARDARE","REG":"KC","count":2},{"CADENA":"RAPPI","REG":"KC","count":2},{"CADENA":"REPSOL COMERCIAL SAC","REG":"KC","count":4},{"CADENA":"REPSOL COMERCIAL SAC","REG":"LIMA","count":44},{"CADENA":"REPSOL COMERCIAL SAC","REG":"NKC","count":1},{"CADENA":"TIENDAS TAMBO S.A.C.","REG":"KC","count":71},{"CADENA":"TIENDAS TAMBO S.A.C.","REG":"LIMA","count":530},{"CADENA":"TIENDAS TAMBO S.A.C.","REG":"NKC","count":46}],
+    weekly:[{"s":"SEM 1","b":"VELO","c":86},{"s":"SEM 1","b":"VUSE","c":391},{"s":"SEM 2","b":"VELO","c":33},{"s":"SEM 2","b":"VUSE","c":287},{"s":"SEM 3","b":"VELO","c":43},{"s":"SEM 3","b":"VUSE","c":142},{"s":"SEM 4","b":"VELO","c":20},{"s":"SEM 4","b":"VUSE","c":169},{"s":"SEM 5","b":"VELO","c":7},{"s":"SEM 5","b":"VUSE","c":57}],
+    brand_promo:[{"p":"CECILIA GUERRERO","b":"VELO","c":14},{"p":"CECILIA GUERRERO","b":"VUSE","c":44},{"p":"EDWARD RODRIGUEZ","b":"VELO","c":34},{"p":"EDWARD RODRIGUEZ","b":"VUSE","c":89},{"p":"EMMELINE PEREYRA","b":"VUSE","c":12},{"p":"GIANFRANCO AREVALO","b":"VUSE","c":18},{"p":"JENNY VALLADARES","b":"VELO","c":58},{"p":"JENNY VALLADARES","b":"VUSE","c":92},{"p":"JESSENIA ARELLANO","b":"VELO","c":8},{"p":"JESSENIA ARELLANO","b":"VUSE","c":71},{"p":"JOSE BENDEZÚ","b":"VELO","c":84},{"p":"JOSE BENDEZÚ","b":"VUSE","c":89},{"p":"KELLY BAZAN","b":"VELO","c":2},{"p":"KELLY BAZAN","b":"VUSE","c":20},{"p":"MILEYDI BALCAZAR","b":"VELO","c":45},{"p":"MILEYDI BALCAZAR","b":"VUSE","c":116},{"p":"RENATO BRICEÑO","b":"VELO","c":10},{"p":"RENATO BRICEÑO","b":"VUSE","c":15},{"p":"SARAI AZO","b":"VELO","c":21},{"p":"SARAI AZO","b":"VUSE","c":30},{"p":"SHEILA CASANOVA","b":"VELO","c":27},{"p":"SHEILA CASANOVA","b":"VUSE","c":90},{"p":"SINTHIA IZAGUIRRE","b":"VELO","c":3},{"p":"SINTHIA IZAGUIRRE","b":"VUSE","c":20},{"p":"STEPHANY APUMAYTA","b":"VELO","c":1},{"p":"STEPHANY APUMAYTA","b":"VUSE","c":103},{"p":"VALERIA HUAMAN","b":"VELO","c":24},{"p":"VALERIA HUAMAN","b":"VUSE","c":49},{"p":"WILLGERSON PAJITA","b":"VELO","c":46},{"p":"WILLGERSON PAJITA","b":"VUSE","c":96},{"p":"YAQUELIN BORJA","b":"VELO","c":97},{"p":"YAQUELIN BORJA","b":"VUSE","c":105},{"p":"YUBICSA ANGELES","b":"VELO","c":1},{"p":"YUBICSA ANGELES","b":"VUSE","c":13}],
+    top_sku:[{"brand":"VUSE","sku":"GRAPE ICE 1K","units":3888},{"brand":"VUSE","sku":"GREEN APPLE 1K","units":3744},{"brand":"VUSE","sku":"WATERMELON ICE 1K","units":3370},{"brand":"VUSE","sku":"BERRY BLEND 1K","units":3355},{"brand":"VUSE","sku":"PEPPERMINT ICE 1K","units":3003},{"brand":"VUSE","sku":"PEPPERMINT ICE 3K","units":2519},{"brand":"VUSE","sku":"STRAWBERRY ICE 1K","units":2418},{"brand":"VELO","sku":"UVA MORADA 6MG","units":1628},{"brand":"VELO","sku":"MENTA FRESCA 6MG","units":1616},{"brand":"VELO","sku":"UVA MORADA 4MG","units":1542},{"brand":"VELO","sku":"SANDIA FRESCA 4MG","units":1539},{"brand":"VELO","sku":"MENTA FRESCA 4MG","units":1513}],
+    parcial_promo:[{"p":"MILEYDI BALCAZAR","c":74},{"p":"STEPHANY APUMAYTA","c":39},{"p":"JESSENIA ARELLANO","c":32},{"p":"YAQUELIN BORJA","c":27},{"p":"JENNY VALLADARES","c":15},{"p":"EMMELINE PEREYRA","c":5},{"p":"WILLGERSON PAJITA","c":5},{"p":"EDWARD RODRIGUEZ","c":4},{"p":"KIARA PANDURO","c":3},{"p":"JOSE BENDEZÚ","c":2},{"p":"RENATO BRICEÑO","c":2},{"p":"KELLY BAZAN","c":1},{"p":"SARAI AZO","c":1},{"p":"SINTHIA IZAGUIRRE","c":1}],
+    parcial_kkaa:[{"kkaa":"TIENDAS TAMBO S.A.C.","c":119},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","c":39},{"kkaa":"COESTI S.A.","c":28},{"kkaa":"REPSOL COMERCIAL SAC","c":15},{"kkaa":"GRIFO AVA","c":8},{"kkaa":"INDELFI","c":2}],
+    parcial_detail:[{"kkaa":"GRIFO AVA","POS":"AVA - ARAMBURU","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - BARRANCO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - BENAVIDES","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - ESPINAR","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - LA PUNTA","promotor":"JENNY VALLADARES","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - MONTERRICO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - TELLO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"GRIFO AVA","POS":"AVA - DASSO","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - ANTERQUERA","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - AYACUCHO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"CADENA DE COMERCIO PERU S.A.C.","POS":"OXXO - CASINELLI","promotor":"MILEYDI BALCAZAR","ciudad":"LIMA"},{"kkaa":"COESTI S.A.","POS":"PRIMAX - E/S AURORA","promotor":"STEPHANY APUMAYTA","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - 28DJULIO","promotor":"YAQUELIN BORJA","ciudad":"LIMA"},{"kkaa":"TIENDAS TAMBO S.A.C.","POS":"TAMBO - 28DJULIO-C6","promotor":"YAQUELIN BORJA","ciudad":"LIMA"}]
+  },
+  ABRIL: {
+    label:'Abril 2026', fecha:'30/04/2026',
+    total_assigned:1149,total_ef:1113,total_noef:36,total_parcial:272,vuse_count:1111,velo_count:530,
+    regions:{LIMA:{ef:913,ne:35,tot:948},KC:{ef:145,ne:0,tot:145},NKC:{ef:55,ne:1,tot:56}},
+    promo_summary:[{"promotor": "CARLOS CALVO", "assigned": 129, "efectivas": 121, "no_efectivas": 8, "region": "LIMA", "kacc": "AVA,OXXO,PRIMAX,REPSOL,TAMBO"}, {"promotor": "CECILIA GUERRERO", "assigned": 42, "efectivas": 42, "no_efectivas": 0, "region": "KC", "kacc": "AVA,PRIMAX,RAPPI,REPSOL,TAMBO"}, {"promotor": "EDWARD RODRIGUEZ", "assigned": 88, "efectivas": 86, "no_efectivas": 2, "region": "LIMA", "kacc": "AVA,OXXO,PRIMAX,REPSOL,TAMBO"}, {"promotor": "EMMELINE PEREYRA", "assigned": 12, "efectivas": 12, "no_efectivas": 0, "region": "NKC", "kacc": "PRIMAX,TAMBO"}, {"promotor": "FLAVIO TRIGOSO", "assigned": 2, "efectivas": 2, "no_efectivas": 0, "region": "NKC", "kacc": "PRIMAX"}, {"promotor": "GIANFRANCO AREVALO", "assigned": 109, "efectivas": 109, "no_efectivas": 0, "region": "LIMA", "kacc": "AVA,OXXO,PRIMAX,RAPPI,REPSOL,TAMBO"}, {"promotor": "JENNY VALLADARES", "assigned": 95, "efectivas": 92, "no_efectivas": 3, "region": "LIMA", "kacc": "AVA,OXXO,PRIMAX,REPSOL,TAMBO"}, {"promotor": "JHORDAN LOPEZ", "assigned": 6, "efectivas": 6, "no_efectivas": 0, "region": "KC", "kacc": "PRIMAX,TAMBO"}, {"promotor": "JOSE BENDEZÚ", "assigned": 98, "efectivas": 91, "no_efectivas": 7, "region": "LIMA", "kacc": "AVA,OXXO,PRIMAX,REPSOL,TAMBO"}, {"promotor": "KELLY BAZAN", "assigned": 20, "efectivas": 20, "no_efectivas": 0, "region": "KC", "kacc": "AVA,PRIMAX,REPSOL,TAMBO"}, {"promotor": "KIARA PANDURO", "assigned": 3, "efectivas": 3, "no_efectivas": 0, "region": "NKC", "kacc": "PRIMAX"}, {"promotor": "RENATO BRICEÑO", "assigned": 19, "efectivas": 18, "no_efectivas": 1, "region": "LIMA", "kacc": "OXXO,PRIMAX,REPSOL,TAMBO"}, {"promotor": "SANDRA VILLAFANA", "assigned": 6, "efectivas": 6, "no_efectivas": 0, "region": "NKC", "kacc": "PRIMAX,TAMBO"}, {"promotor": "SARAI AZO", "assigned": 28, "efectivas": 28, "no_efectivas": 0, "region": "KC", "kacc": "AVA,PRIMAX,TAMBO"}, {"promotor": "SHEILA CASANOVA", "assigned": 92, "efectivas": 90, "no_efectivas": 2, "region": "LIMA", "kacc": "OXXO,PRIMAX,REPSOL,TAMBO"}, {"promotor": "SINTHIA IZAGUIRRE", "assigned": 20, "efectivas": 20, "no_efectivas": 0, "region": "NKC", "kacc": "OXXO,PRIMAX,TAMBO"}, {"promotor": "STEPHANY APUMAYTA", "assigned": 119, "efectivas": 107, "no_efectivas": 12, "region": "LIMA", "kacc": "AVA,OXXO,PRIMAX,REPSOL,TAMBO"}, {"promotor": "VALERIA HUAMAN ", "assigned": 49, "efectivas": 49, "no_efectivas": 0, "region": "KC", "kacc": "AVA,OXXO,PRIMAX,RAPPI,REPSOL,TAMBO"}, {"promotor": "WILLGERSON PAJITA", "assigned": 96, "efectivas": 96, "no_efectivas": 0, "region": "LIMA", "kacc": "AVA,OXXO,PRIMAX,REPSOL,TAMBO"}, {"promotor": "YAQUELIN BORJA", "assigned": 103, "efectivas": 103, "no_efectivas": 0, "region": "LIMA", "kacc": "AVA,OXXO,PRIMAX,REPSOL,TAMBO"}, {"promotor": "YUBICSA ANGELES", "assigned": 13, "efectivas": 12, "no_efectivas": 1, "region": "NKC", "kacc": "AVA,PRIMAX,REPSOL,TAMBO"}],
+    motivos_agg:[{"motivo": "NO PERMITE CONTEO", "count": 29}, {"motivo": "LOCAL CERRADO DEFINITIVAMENTE", "count": 4}, {"motivo": "LOCAL CERRADO", "count": 2}, {"motivo": "NO VENDE VUSE", "count": 1}],
+    motivos_detail:[{"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - SORIA", "promotor": "EDWARD RODRIGUEZ", "motivo": "LOCAL CERRADO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S SAN LUIS 1", "promotor": "EDWARD RODRIGUEZ", "motivo": "LOCAL CERRADO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CANADA-C10", "promotor": "CARLOS CALVO", "motivo": "LOCAL CERRADO DEFINITIVAMENTE", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO SURQUILLO", "promotor": "STEPHANY APUMAYTA", "motivo": "LOCAL CERRADO DEFINITIVAMENTE", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - AREQUIPA-C19", "promotor": "CARLOS CALVO", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - BOLIVAR 2", "promotor": "JOSE BENDEZÚ", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - DELCAMPO", "promotor": "JOSE BENDEZÚ", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - STRIPFIBRA2", "promotor": "JOSE BENDEZÚ", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ROMA", "promotor": "JOSE BENDEZÚ", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SNMARCOS", "promotor": "JOSE BENDEZÚ", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA CARGO CITY", "promotor": "JENNY VALLADARES", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VENEZUELA-C11", "promotor": "JOSE BENDEZÚ", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VENEZUELA-C9", "promotor": "JOSE BENDEZÚ", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CANADA-C4", "promotor": "CARLOS CALVO", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - REVOREDO", "promotor": "JENNY VALLADARES", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TELLO", "promotor": "CARLOS CALVO", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - RISSO", "promotor": "CARLOS CALVO", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PANAMA-C35", "promotor": "CARLOS CALVO", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S BAHIA", "promotor": "CARLOS CALVO", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - ATENAS", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - ROETGEN", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO PRIMAVERA", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - EL AVION", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - 06 DE AGOSTO", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - SANTA MARIA", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ANGAMOS-C25", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - MARSANO-C15", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - MALA2", "promotor": "RENATO BRICEÑO", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PALERMO", "promotor": "CARLOS CALVO", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S QUILCA", "promotor": "JENNY VALLADARES", "motivo": "NO VENDE VUSE", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - DULANTO-C14", "promotor": "SHEILA CASANOVA", "motivo": "LOCAL CERRADO DEFINITIVAMENTE", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - CHANCAY 2", "promotor": "YUBICSA ANGELES", "motivo": "NO PERMITE CONTEO", "ciudad": "CHANCAY"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - PRINCIPAL", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO TRAPICHE 2", "promotor": "SHEILA CASANOVA", "motivo": "LOCAL CERRADO DEFINITIVAMENTE", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - ORDOÑEZ", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA AVIACION", "promotor": "STEPHANY APUMAYTA", "motivo": "NO PERMITE CONTEO", "ciudad": "LIMA"}],
+    kkaa_ef:[{"CADENA": "CADENA DE COMERCIO PERU S.A.C.", "REG": "KC", "count": 20}, {"CADENA": "CADENA DE COMERCIO PERU S.A.C.", "REG": "LIMA", "count": 185}, {"CADENA": "CADENA DE COMERCIO PERU S.A.C.", "REG": "NKC", "count": 3}, {"CADENA": "COESTI S.A.", "REG": "KC", "count": 39}, {"CADENA": "COESTI S.A.", "REG": "LIMA", "count": 109}, {"CADENA": "COESTI S.A.", "REG": "NKC", "count": 10}, {"CADENA": "GRIFO AVA", "REG": "KC", "count": 10}, {"CADENA": "GRIFO AVA", "REG": "LIMA", "count": 16}, {"CADENA": "GRIFO AVA", "REG": "NKC", "count": 1}, {"CADENA": "INDELFI", "REG": "KC", "count": 4}, {"CADENA": "INDELFI", "REG": "LIMA", "count": 1}, {"CADENA": "INDELFI", "REG": "NKC", "count": 1}, {"CADENA": "LAGARDARE", "REG": "KC", "count": 1}, {"CADENA": "RAPPI", "REG": "KC", "count": 2}, {"CADENA": "RAPPI", "REG": "LIMA", "count": 2}, {"CADENA": "REPSOL COMERCIAL SAC", "REG": "KC", "count": 4}, {"CADENA": "REPSOL COMERCIAL SAC", "REG": "LIMA", "count": 45}, {"CADENA": "REPSOL COMERCIAL SAC", "REG": "NKC", "count": 1}, {"CADENA": "TIENDAS TAMBO S.A.C.", "REG": "KC", "count": 70}, {"CADENA": "TIENDAS TAMBO S.A.C.", "REG": "LIMA", "count": 556}, {"CADENA": "TIENDAS TAMBO S.A.C.", "REG": "NKC", "count": 40}],
+    weekly:[{"s": "SEM 1", "b": "VELO", "c": 12}, {"s": "SEM 1", "b": "VUSE", "c": 260}, {"s": "SEM 2", "b": "VELO", "c": 39}, {"s": "SEM 2", "b": "VUSE", "c": 192}, {"s": "SEM 3", "b": "VELO", "c": 53}, {"s": "SEM 3", "b": "VUSE", "c": 331}, {"s": "SEM 4", "b": "VELO", "c": 37}, {"s": "SEM 4", "b": "VUSE", "c": 183}, {"s": "SEM 5", "b": "VELO", "c": 15}, {"s": "SEM 5", "b": "VUSE", "c": 71}],
+    brand_promo:[{"p": "CARLOS CALVO", "b": "VELO", "c": 101}, {"p": "CARLOS CALVO", "b": "VUSE", "c": 102}, {"p": "CECILIA GUERRERO", "b": "VELO", "c": 13}, {"p": "CECILIA GUERRERO", "b": "VUSE", "c": 46}, {"p": "EDWARD RODRIGUEZ", "b": "VELO", "c": 48}, {"p": "EDWARD RODRIGUEZ", "b": "VUSE", "c": 87}, {"p": "EMMELINE PEREYRA NKC", "b": "VUSE", "c": 12}, {"p": "GIANFRANCO AREVALO", "b": "VELO", "c": 3}, {"p": "GIANFRANCO AREVALO", "b": "VUSE", "c": 103}, {"p": "JENNY VALLADARES", "b": "VELO", "c": 59}, {"p": "JENNY VALLADARES", "b": "VUSE", "c": 91}, {"p": "JHORDAN LOPEZ", "b": "VELO", "c": 6}, {"p": "JHORDAN LOPEZ", "b": "VUSE", "c": 6}, {"p": "JOSÉ RAÚL BENDEZU LÁZARO", "b": "VELO", "c": 85}, {"p": "JOSÉ RAÚL BENDEZU LÁZARO", "b": "VUSE", "c": 90}, {"p": "JUAN ROSAS ROJAS", "b": "VUSE", "c": 18}, {"p": "KAREN AGRAMONDE", "b": "VUSE", "c": 2}, {"p": "KELLY BAZAN", "b": "VUSE", "c": 20}, {"p": "KIARA PANDURO", "b": "VUSE", "c": 3}, {"p": "RENATO BRICE", "b": "VELO", "c": 20}, {"p": "RENATO BRICE", "b": "VUSE", "c": 32}, {"p": "SANDRA VILLAFANA NKC", "b": "VUSE", "c": 7}, {"p": "SARAI AZO", "b": "VELO", "c": 19}, {"p": "SARAI AZO", "b": "VUSE", "c": 29}, {"p": "SHEILA CASANOVA", "b": "VELO", "c": 29}, {"p": "SHEILA CASANOVA", "b": "VUSE", "c": 90}, {"p": "SINTHIA YZAGUIRRE", "b": "VELO", "c": 2}, {"p": "SINTHIA YZAGUIRRE", "b": "VUSE", "c": 20}, {"p": "STEPHANY APUMAYTA", "b": "VUSE", "c": 107}, {"p": "VALERIA HUAMAN", "b": "VELO", "c": 29}, {"p": "VALERIA HUAMAN", "b": "VUSE", "c": 49}, {"p": "WILGERSON PAJITA", "b": "VELO", "c": 49}, {"p": "WILGERSON PAJITA", "b": "VUSE", "c": 96}, {"p": "YAQUELIN BORJA", "b": "VELO", "c": 67}, {"p": "YAQUELIN BORJA", "b": "VUSE", "c": 113}, {"p": "YUBICSA ANGELES", "b": "VUSE", "c": 12}],
+    top_sku:[{"brand": "VUSE", "sku": "VUSE UVA FRESCA 1K", "units": 3795}, {"brand": "VUSE", "sku": "VUSE MANZANA 1K", "units": 3718}, {"brand": "VUSE", "sku": "VUSE SANDÍA FRESCA 1K", "units": 3308}, {"brand": "VUSE", "sku": "VUSE MIX DE FRUTOS ROJOS 1K", "units": 3009}, {"brand": "VUSE", "sku": "VUSE MENTA FRESCA 1K", "units": 2865}, {"brand": "VUSE", "sku": "VUSE FRUTOS ROJOS Y SANDIA 1K", "units": 2716}, {"brand": "VUSE", "sku": "VUSE FRESA FRESCA 1K", "units": 2567}, {"brand": "VUSE", "sku": "VUSE UVA FRESCA 5K", "units": 2543}, {"brand": "VUSE", "sku": "VUSE MENTA FRESCA 3K", "units": 2538}, {"brand": "VUSE", "sku": "VUSE UVA FRESCA 3K", "units": 2495}, {"brand": "VUSE", "sku": "VUSE MANZANA 3K", "units": 2428}, {"brand": "VUSE", "sku": "VUSE MANZANA 5K", "units": 2355}],
+    parcial_promo:[{"p": "YAQUELIN BORJA", "c": 93}, {"p": "STEPHANY APUMAYTA", "c": 79}, {"p": "GIANFRANCO AREVALO", "c": 53}, {"p": "JENNY VALLADARES", "c": 14}, {"p": "JOSE BENDEZÚ", "c": 14}, {"p": "CARLOS CALVO", "c": 7}, {"p": "EMMELINE PEREYRA", "c": 3}, {"p": "KELLY BAZAN", "c": 3}, {"p": "RENATO BRICEÑO", "c": 2}, {"p": "EDWARD RODRIGUEZ", "c": 1}, {"p": "KIARA PANDURO", "c": 1}, {"p": "SANDRA VILLAFANA", "c": 1}, {"p": "WILLGERSON PAJITA", "c": 1}],
+    parcial_kkaa:[{"kkaa": "TIENDAS TAMBO S.A.C.", "c": 188}, {"kkaa": "COESTI S.A.", "c": 33}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "c": 30}, {"kkaa": "REPSOL COMERCIAL SAC", "c": 13}, {"kkaa": "GRIFO AVA", "c": 6}, {"kkaa": "0", "c": 1}, {"kkaa": "RAPPI", "c": 1}],
+    parcial_detail:[{"kkaa": "GRIFO AVA", "POS": "AVA - ARAMBURU", "promotor": "CARLOS CALVO", "ciudad": "LIMA"}, {"kkaa": "GRIFO AVA", "POS": "AVA - BENAVIDES", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "GRIFO AVA", "POS": "AVA - EL TREN", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "GRIFO AVA", "POS": "AVA - ESPINAR", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "GRIFO AVA", "POS": "AVA - LA PUNTA", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "GRIFO AVA", "POS": "AVA - PEZET", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - ALLENDE", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - ARIADNA", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - AYACUCHO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - BARATARIA", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - BATRICH", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - BILLINGHURST", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - BOLIVAR", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - CACERES", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - CARPIO", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - CEDROS", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - DELIA", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - ENERO", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - GAVIOTAS", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - HOSPITAL VES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - LEON", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - MARCONA", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - MARTIN", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - MATELLINI", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - MONTE", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - MORE", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - NACIONES", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - NORTE", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - PALACIOS", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - PENSAMIENTOS", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - PERSHING", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - SALIRROSAS", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - SHELL", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - TINOCO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - VALENTÍN", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "CADENA DE COMERCIO PERU S.A.C.", "POS": "OXXO - VIVIANO", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S ALEGRIA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S ARMENDARIZ", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S AURORA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S EJERCITO", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S EL CHORRILLANO", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S EL ROSARIO", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "Primax - E/S ESTRELLA", "promotor": "EMMELINE PEREYRA", "ciudad": "CHINCHA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S FERRARI", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S GRANADA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S INTERNACIONAL", "promotor": "KELLY BAZAN", "ciudad": "CHICLAYO"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S LA CALERA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "Primax - E/S LA MARINA SELVA", "promotor": "KIARA PANDURO", "ciudad": "IQUITOS"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S LAS GARDENIAS", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S MONTREAL", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S NAVAL", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S PASEO DE LA REPUBLICA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S PRINCIPAL", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S RICARDO PALMA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S RISSO", "promotor": "CARLOS CALVO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S SAN ANTONIO", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S SAN LUIS 2", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S SURCO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S TAVIRSA", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - E/S TOMAS MARSANO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO BENAVIDES 2", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO HIGUERETA", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO MANUEL SEGURA", "promotor": "CARLOS CALVO", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO PACHACUTEC", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO PARDO", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO PARDO 2", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO RICARDO PALMA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - LISTO SCHELL", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "COESTI S.A.", "POS": "PRIMAX - TIENDA PETROSUR", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "RAPPI", "POS": "RAPPI - PRIMAVERA", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "0", "POS": "RAPPI LA PAZ", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - AREQUIPA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - CEBOTTO", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - CEDROS DE VILLA", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - CENTENARIO", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - EL ROSEDAL", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - LA AURORA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - LA ENCANTADA", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - LA VICTORIA", "promotor": "KELLY BAZAN", "ciudad": "CHICLAYO"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - MIRAFLORES", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - PARQUE MORA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - REDUCTO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - TENAUD", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "REPSOL COMERCIAL SAC", "POS": "REPSOL - TRONCO FIRME", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - 1ERO DE MAYO - VES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - 28DJULIO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - 28DJULIO-C6", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ALAMEDA SUR 2", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ALAMEDA-C6", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ALAMEDA-SUR", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ALAMEDASUR-C8", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ALLENDE", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - AMERICA-SJM", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ANGAMOS C12", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ANGAMOS C19", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ANGAMOS-C25-2", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ANGAMOS-C3", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ANGAMOS-C4", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ARMENDARIZ-C1", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ASTETE", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - AVIACIÓN C3 PISCO", "promotor": "EMMELINE PEREYRA", "ciudad": "PISCO"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - AVIACION-C35", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - AVIACION-C38", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - AVIACION-C49", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - AYACUCHO-C13", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BASE NAVAL", "promotor": "RENATO BRICEÑO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BENAVIDES-C19", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BENAVIDES-C22", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BENAVIDES-C36", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BENAVIDES-C50", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BENAVIDES-C54", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BERLIN", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BERNALES-C4", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BOLIVAR-C8", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BOLOGNESI-LURIN", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - BRASIL-C32", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CALLE-A", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CAMINOS-C13", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CAMINOS-C21", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CANEVARO-C4-SJM", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CANEVARO-SJM", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CAÑETE IMPERIAL2", "promotor": "EMMELINE PEREYRA", "ciudad": "CAÑETE"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CASTELLANA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CASTI-C4-LURIN", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CASTILLA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CASUARINAS", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CENTRAL-VES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CHICLAYO-C7-MIRAFLORES", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CHORRILLOS-C2", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CLARK", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - COLONIAL-C31", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CORDOVA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - COSTAAZUL-C1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - COSTANERA", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - CUETO-C5", "promotor": "CARLOS CALVO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - DANTE", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - DEFENSORES-SJM", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - DIAGONAL", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - DIAGONAL-C3", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - DIEGO-DE-ALMAGRO", "promotor": "CARLOS CALVO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - DIEZCANSECO-C1", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - EJERCITO-C2", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - EJERCITO-C8", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ELDORADO-C12-CHICLAYO", "promotor": "KELLY BAZAN", "ciudad": "CHICLAYO"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ELPOLO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ELSOL-CHORRILLOS", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ELSOL-SURCO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ENCALADA C11", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ENCALADA-C3", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ESPINAR", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - FELIXDIBOS-C2-MAGDALENA", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - FONTANA2", "promotor": "EDWARD RODRIGUEZ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - GALLESE C9", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - GAVIOTAS", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - GCIVIL-C7", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - GCIVILSUR-C1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - GRAU-C4-BELLAVISTA", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - GRIFO-MATELLINI", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - GUARDIACIVIL-C5", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - GUARDIAPERUANA-CHORRILLOS", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - HIGUERETA-C6", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - HUAYLAS-C1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - HUAYLAS-C10", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - HUAYLAS-C7", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - IGLESIAS-SJM", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - INCLAN", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - INSURGENTES", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - JAZMINES-SJM", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - J-CHAVEZ", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - JCHAVEZ C7", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - JCHAVEZ-C10-SURCO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - JCHAVEZ-C2-MIRAFLORES", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - JGALVEZ-C3", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - JPRADO-C38", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - JPRADO-C49", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - JPRADO-C5", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - JVELASCO-VES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - LACURVA", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - LAMERCED-C8", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - LARCO C4", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - LIBERTAD", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - LIBERTAD-C7", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - LIMA-C10", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - LIMATAMBO2", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - LIMAVES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - LOZANO-SURCO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - MACHUCA-C1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - MALA", "promotor": "RENATO BRICEÑO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - MATELLINI-C1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - MATELLINI-C4", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - M-BASTIDAS", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - MENDIBURU", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - MINKA", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - MONTEROSA-C2", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - NAZARENAS", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - NUEVO-CHIMBOTE", "promotor": "SANDRA VILLAFANA", "ciudad": "CHIMBOTE"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - OLAYA-C1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - OLAYA-C1-MIRAFLORES", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PACASMAYO", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PANAMA-C63", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PANAMERICANA LURIN", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PARDO-C3", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PASTORSEVILLA", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PEDROVENTURO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PERSHING", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PETIT-C26", "promotor": "CARLOS CALVO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PINOS", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PRECURSORES-C2", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PRIMAVERA-C1", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PRINCIPAL", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PRINCIPAL C4", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PROCERES-SURCO", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PUMACAHUA - VES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PUMAS-C1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PUNTA HERMOSA 2", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - PUNTAHERMOSA", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - REDUCTO-C10", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - REPUBLICA-C47", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - REPUBLICANA-VES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - REVOLUCION 2-VES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - REVOLUCION-C14", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - REVOLUCION-C18 VES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - RIVAS-SJM", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - ROOSEVELT-C56", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - RPALMA-C2", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - RPALMA-C4", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - RPALMA-C9", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SALGUERO-C4", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SAN BARTOLO 2", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SANBARTOLO", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SANBORJASUR-C2", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SANCLEMENTE-SURCO", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SAN-JUAN", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SANJUAN-C7-SJM", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SANLUIS-C20", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SANLUIS-C24", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SANPEDRO-CHORRILLOS", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SANTUARIO", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SANVICENTE2-LURIN", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SEVILLA", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SEVILLA2", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SHELL", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - SOLIDARIDAD", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA ANGAMOS", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA BENAVIDES", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA IGLESIAS", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA LAS FLORES", "promotor": "WILLGERSON PAJITA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA MATELINI", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA PACHACUTEC", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA SAN BORJA", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TDA SAN VICENTE", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TERAN-C9", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - THORNDIKE-CERCADO", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TINOCO", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - T-MARSANO", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TOLOMEO.C1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - TRIGAL", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - UDELCALLAO", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - UDELIMA2", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - UGARTE-C13", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - UNION-C1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - UNIVERSITARIA", "promotor": "JOSE BENDEZÚ", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - UTEC", "promotor": "GIANFRANCO AREVALO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VALLEJO", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VALLEJO C3", "promotor": "CARLOS CALVO", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VALLEJO-C9-VES", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VENEZUELA-C24", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VILLA1", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VILLAMARIA-C4", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VILLARAN", "promotor": "STEPHANY APUMAYTA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VILLA-UPC", "promotor": "YAQUELIN BORJA", "ciudad": "LIMA"}, {"kkaa": "TIENDAS TAMBO S.A.C.", "POS": "TAMBO - VIOLETAS-C2", "promotor": "JENNY VALLADARES", "ciudad": "LIMA"}]
+  }
 };
 
-const pk={};D.parcial_detail.forEach(d=>{pk[d.kkaa]=(pk[d.kkaa]||0)+1;});
-D.parcial_kkaa=Object.entries(pk).map(([k,v])=>({kkaa:k,c:v})).sort((a,b)=>b.c-a.c);
+// ================================================================
+// STATE
+// ================================================================
+let currentMes = 'MARZO';
+let F = { region:'', promotor:'', brand:'', kkaa:'' };
+const KS = {'TIENDAS TAMBO S.A.C.':'TAMBO','CADENA DE COMERCIO PERU S.A.C.':'OXXO','COESTI S.A.':'PRIMAX','REPSOL COMERCIAL SAC':'REPSOL','GRIFO AVA':'AVA'};
+const ks = n => KS[n] || n;
 
-const KS={'TIENDAS TAMBO S.A.C.':'TAMBO','CADENA DE COMERCIO PERU S.A.C.':'OXXO','COESTI S.A.':'PRIMAX','REPSOL COMERCIAL SAC':'REPSOL','GRIFO AVA':'AVA'};
-const ks=n=>KS[n]||n;
-let F={region:'',promotor:'',brand:'',kkaa:''};
+// ================================================================
+// MONTH SWITCH
+// ================================================================
+function setMonth(mes) {
+  currentMes = mes;
+  const D = MESES[mes];
+  document.getElementById('btn-marzo').className = 'month-btn ' + (mes==='MARZO'?'active':'inactive');
+  document.getElementById('btn-abril').className = 'month-btn ' + (mes==='ABRIL'?'active':'inactive');
+  document.getElementById('mes-badge').textContent = D.label;
+  document.getElementById('footer-date').textContent = 'Datos al ' + D.fecha;
+  // Reset all search/filter inputs on month change
+  document.getElementById('search-noef').value = '';
+  document.getElementById('search-parcial').value = '';
+  document.getElementById('f-motivo-noef').innerHTML = '<option value="">Todos los motivos</option>';
+  resetFilters();
+}
 
-function populateFilters(){
-  const s=document.getElementById('f-promotor');
-  [...new Set(D.promo_summary.map(p=>p.promotor))].sort().forEach(p=>{
-    const o=document.createElement('option');o.value=p;o.textContent=p;s.appendChild(o);
+// ================================================================
+// FILTERS
+// ================================================================
+function populatePromoFilter() {
+  const sel = document.getElementById('f-promotor');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">Todos los Promotores</option>';
+  const D = MESES[currentMes];
+  [...new Set(D.promo_summary.map(p=>p.promotor))].sort().forEach(p => {
+    const o = document.createElement('option');
+    o.value = p; o.textContent = p;
+    if (p === cur) o.selected = true;
+    sel.appendChild(o);
   });
 }
-function applyFilters(){
-  F.region=document.getElementById('f-region').value;
-  F.promotor=document.getElementById('f-promotor').value;
-  F.brand=document.getElementById('f-brand').value;
-  F.kkaa=document.getElementById('f-kkaa').value;
+function applyFilters() {
+  F.region = document.getElementById('f-region').value;
+  F.promotor = document.getElementById('f-promotor').value;
+  F.brand = document.getElementById('f-brand').value;
+  F.kkaa = document.getElementById('f-kkaa').value;
   renderAll();
 }
-function resetFilters(){
-  F={region:'',promotor:'',brand:'',kkaa:''};
-  ['f-region','f-promotor','f-brand','f-kkaa'].forEach(id=>document.getElementById(id).value='');
+function resetFilters() {
+  F = { region:'', promotor:'', brand:'', kkaa:'' };
+  ['f-region','f-brand','f-kkaa'].forEach(id => document.getElementById(id).value = '');
+  populatePromoFilter();
   renderAll();
-}
-function fPromo(){return D.promo_summary.filter(p=>{
-  if(F.region&&p.region!==F.region)return false;
-  if(F.promotor&&p.promotor!==F.promotor)return false;
-  if(F.kkaa){const sh=ks(F.kkaa).toUpperCase();if(!p.kacc.toUpperCase().includes(sh))return false;}
-  return true;
-});}
-function fKkaa(){return D.kkaa_ef.filter(k=>{
-  if(F.region&&k.REG!==F.region)return false;
-  if(F.kkaa&&k.CADENA!==F.kkaa)return false;
-  return true;
-});}
-function fBrand(){return D.brand_promo.filter(x=>{
-  if(F.promotor&&x.p!==F.promotor)return false;
-  if(F.brand&&x.b!==F.brand)return false;
-  return true;
-});}
-function fParcialPromo(){
-  if(!F.promotor)return D.parcial_promo;
-  const f=D.parcial_promo.find(x=>x.p===F.promotor);return f?[f]:[];
 }
 
-function renderKPIs(){
-  const p=fPromo();
-  const as=p.reduce((s,x)=>s+x.assigned,0);
-  const ef=p.reduce((s,x)=>s+x.efectivas,0);
-  const ne=p.reduce((s,x)=>s+x.no_efectivas,0);
-  const pct=as?(ef/as*100).toFixed(1):0;
-  const par=fParcialPromo().reduce((s,x)=>s+x.c,0);
-  const bp=fBrand();
-  const vuse=bp.filter(x=>x.b==='VUSE').reduce((s,x)=>s+x.c,0);
-  const velo=bp.filter(x=>x.b==='VELO').reduce((s,x)=>s+x.c,0);
-  const kpis=[
+// ================================================================
+// FILTER HELPERS
+// ================================================================
+function fPromo() {
+  const D = MESES[currentMes];
+  return D.promo_summary.filter(p => {
+    if (F.region && p.region !== F.region) return false;
+    if (F.promotor && p.promotor !== F.promotor) return false;
+    if (F.kkaa) { const sh = ks(F.kkaa).toUpperCase(); if (!p.kacc.toUpperCase().includes(sh)) return false; }
+    return true;
+  });
+}
+function fKkaa() {
+  const D = MESES[currentMes];
+  return D.kkaa_ef.filter(k => {
+    if (F.region && k.REG !== F.region) return false;
+    if (F.kkaa && k.CADENA !== F.kkaa) return false;
+    return true;
+  });
+}
+function fBrand() {
+  const D = MESES[currentMes];
+  return D.brand_promo.filter(x => {
+    if (F.promotor && x.p !== F.promotor) return false;
+    if (F.brand && x.b !== F.brand) return false;
+    return true;
+  });
+}
+function fParcialPromo() {
+  const D = MESES[currentMes];
+  if (!F.promotor) return D.parcial_promo;
+  const f = D.parcial_promo.find(x => x.p === F.promotor);
+  return f ? [f] : [];
+}
+
+// ================================================================
+// RENDER FUNCTIONS
+// ================================================================
+function renderKPIs() {
+  const D = MESES[currentMes];
+  const p = fPromo();
+  const as = p.reduce((s,x)=>s+x.assigned,0);
+  const ef = p.reduce((s,x)=>s+x.efectivas,0);
+  const ne = p.reduce((s,x)=>s+x.no_efectivas,0);
+  const pct = as ? (ef/as*100).toFixed(1) : 0;
+  const par = fParcialPromo().reduce((s,x)=>s+x.c,0);
+  const bp = fBrand();
+  const vuse = bp.filter(x=>x.b==='VUSE').reduce((s,x)=>s+x.c,0);
+  const velo = bp.filter(x=>x.b==='VELO').reduce((s,x)=>s+x.c,0);
+  const kpis = [
     {icon:'📋',val:as,label:'PDVs Asignados',sub:'Universo total',c:'c-navy'},
     {icon:'✅',val:ef,label:'PDVs Efectivos',sub:'Con conteo realizado',c:'c-green'},
-    {icon:'❌',val:ne,label:'PDVs No Efectivos',sub:'Sin conteo (57 en total)',c:'c-red'},
+    {icon:'❌',val:ne,label:'PDVs No Efectivos',sub:`Total mes: ${D.total_noef}`,c:'c-red'},
     {icon:'📊',val:pct+'%',label:'Tasa de Efectividad',sub:'Efectivos / Asignados',c:'c-gold'},
-    {icon:'⚡',val:par,label:'Conteo Parcial',sub:'SKUs incompletos',c:'c-orange'},
-    {icon:'💨',val:vuse,label:'PDVs con VUSE',sub:'En BBDD de conteo',c:'c-navy'},
-    {icon:'🟡',val:velo,label:'PDVs con VELO',sub:'En BBDD de conteo',c:'c-gold'},
+    {icon:'⚡',val:par,label:'Conteo Parcial',sub:`Total mes: ${D.total_parcial}`,c:'c-orange'},
   ];
-  document.getElementById('kpi-section').innerHTML=kpis.map(k=>`
+  document.getElementById('kpi-section').innerHTML = kpis.map(k=>`
     <div class="kpi-card ${k.c}">
       <div class="kpi-icon">${k.icon}</div>
       <div class="kpi-val">${typeof k.val==='number'?k.val.toLocaleString():k.val}</div>
@@ -474,56 +422,49 @@ function renderKPIs(){
     </div>`).join('');
 }
 
-function renderRegionCards(){
-  const regions=F.region?[F.region]:['LIMA','KC','NKC'];
-  const RC={LIMA:'#1B2F6E',KC:'#0E9B6A',NKC:'#C9A000'};
-  const RB={LIMA:'#EEF2FF',KC:'#D1FAE5',NKC:'#FEF9C3'};
-  const REF={LIMA:{ef:886,ne:56,tot:942},KC:{ef:143,ne:0,tot:143},NKC:{ef:56,ne:1,tot:57}};
-  let html='<div class="region-grid">';
-  regions.forEach(reg=>{
-    const promo=D.promo_summary.filter(p=>p.region===reg);
-    if(F.promotor){
-      const x=promo.find(p=>p.promotor===F.promotor);
-      if(!x){html+=`<div class="region-card" style="border-left-color:${RC[reg]}"><div class="region-name" style="color:${RC[reg]}">${reg}</div><div style="font-size:11px;color:var(--muted)">Sin datos</div></div>`;return;}
-      const pct=x.assigned?(x.efectivas/x.assigned*100).toFixed(0):0;
+function renderRegionCards() {
+  const D = MESES[currentMes];
+  const regions = F.region ? [F.region] : ['LIMA','KC','NKC'];
+  const RC = {LIMA:'#1B2F6E',KC:'#0E9B6A',NKC:'#C9A000'};
+  const RB = {LIMA:'#EEF2FF',KC:'#D1FAE5',NKC:'#FEF9C3'};
+  let html = '<div class="region-grid">';
+  regions.forEach(reg => {
+    const promo = D.promo_summary.filter(p=>p.region===reg);
+    if (F.promotor) {
+      const x = promo.find(p=>p.promotor===F.promotor);
+      if (!x) { html+=`<div class="region-card" style="border-left-color:${RC[reg]}"><div class="region-name" style="color:${RC[reg]}">${reg}</div><div style="font-size:11px;color:var(--muted)">Sin datos</div></div>`; return; }
+      const pct = x.assigned ? (x.efectivas/x.assigned*100).toFixed(0) : 0;
       html+=`<div class="region-card" style="border-left-color:${RC[reg]};background:${RB[reg]}">
         <div class="region-name" style="color:${RC[reg]}">${reg}</div>
-        <div style="display:flex;gap:10px;font-size:11px;font-weight:600">
-          <span style="color:var(--green)">✅ ${x.efectivas}</span>
-          <span style="color:var(--red)">❌ ${x.no_efectivas}</span>
-          <span style="color:var(--muted)">📋 ${x.assigned}</span>
-        </div>
+        <div style="display:flex;gap:10px;font-size:11px;font-weight:600"><span style="color:var(--green)">✅ ${x.efectivas}</span><span style="color:var(--red)">❌ ${x.no_efectivas}</span><span style="color:var(--muted)">📋 ${x.assigned}</span></div>
         <div class="region-bar-track"><div class="region-bar-fill" style="width:${pct}%;background:${RC[reg]}"></div></div>
         <div style="font-size:10px;color:var(--muted);font-weight:600">${pct}% efectividad</div>
-      </div>`;return;
+      </div>`; return;
     }
-    const d=REF[reg];const pct=d.tot?(d.ef/d.tot*100).toFixed(1):0;
+    const d = D.regions[reg] || {ef:0,ne:0,tot:0};
+    const pct = d.tot ? (d.ef/d.tot*100).toFixed(1) : 0;
     html+=`<div class="region-card" style="border-left-color:${RC[reg]};background:${RB[reg]}">
       <div class="region-name" style="color:${RC[reg]}">${reg}</div>
-      <div style="display:flex;gap:10px;font-size:11px;font-weight:600;margin-bottom:2px">
-        <span style="color:var(--green)">✅ ${d.ef}</span>
-        <span style="color:var(--red)">❌ ${d.ne}</span>
-        <span style="color:var(--muted)">📋 ${d.tot}</span>
-      </div>
+      <div style="display:flex;gap:10px;font-size:11px;font-weight:600;margin-bottom:2px"><span style="color:var(--green)">✅ ${d.ef}</span><span style="color:var(--red)">❌ ${d.ne}</span><span style="color:var(--muted)">📋 ${d.tot}</span></div>
       <div class="region-bar-track"><div class="region-bar-fill" style="width:${pct}%;background:${RC[reg]}"></div></div>
-      <div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:2px">${pct}% efectividad · ${promo.length} promotores</div>
+      <div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:2px">${pct}% · ${promo.length} promotores</div>
     </div>`;
   });
-  document.getElementById('region-cards').innerHTML=html+'</div>';
+  document.getElementById('region-cards').innerHTML = html + '</div>';
 }
 
-function renderDonut(){
-  const p=fPromo();
-  const ef=p.reduce((s,x)=>s+x.efectivas,0);
-  const ne=p.reduce((s,x)=>s+x.no_efectivas,0);
-  const par=fParcialPromo().reduce((s,x)=>s+x.c,0);
-  const efL=Math.max(0,ef-par);
-  const tot=ef+ne;const pct=tot?(ef/tot*100).toFixed(1):0;
-  const segs=[{label:'Ef. Completo',val:efL,color:'#0E9B6A'},{label:'Conteo Parcial',val:par,color:'#D97706'},{label:'No Efectivos',val:ne,color:'#C93B3B'}];
-  const r=60,cx=70,cy=70;let ang=-Math.PI/2,paths='';
-  const tt=segs.reduce((s,x)=>s+x.val,0)||1;
-  segs.forEach(sg=>{
-    if(!sg.val)return;
+function renderDonut() {
+  const p = fPromo();
+  const ef = p.reduce((s,x)=>s+x.efectivas,0);
+  const ne = p.reduce((s,x)=>s+x.no_efectivas,0);
+  const par = fParcialPromo().reduce((s,x)=>s+x.c,0);
+  const efL = Math.max(0,ef-par);
+  const tot = ef+ne; const pct = tot?(ef/tot*100).toFixed(1):0;
+  const segs = [{label:'Ef. Completo',val:efL,color:'#0E9B6A'},{label:'Conteo Parcial',val:par,color:'#D97706'},{label:'No Efectivos',val:ne,color:'#C93B3B'}];
+  const r=60,cx=70,cy=70; let ang=-Math.PI/2,paths='';
+  const tt = segs.reduce((s,x)=>s+x.val,0)||1;
+  segs.forEach(sg => {
+    if(!sg.val) return;
     const a=sg.val/tt*2*Math.PI;
     const x1=cx+r*Math.cos(ang),y1=cy+r*Math.sin(ang),x2=cx+r*Math.cos(ang+a),y2=cy+r*Math.sin(ang+a);
     paths+=`<path d="M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r},0,${a>Math.PI?1:0},1,${x2.toFixed(1)},${y2.toFixed(1)} Z" fill="${sg.color}" opacity="0.9"/>`;
@@ -532,8 +473,7 @@ function renderDonut(){
   document.getElementById('donut-wrap').innerHTML=`
     <div style="position:relative;flex-shrink:0">
       <svg viewBox="0 0 140 140" width="130" height="130">
-        <circle cx="70" cy="70" r="60" fill="#EBEEf7"/>${paths}
-        <circle cx="70" cy="70" r="38" fill="white"/>
+        <circle cx="70" cy="70" r="60" fill="#EBEEf7"/>${paths}<circle cx="70" cy="70" r="38" fill="white"/>
       </svg>
       <div class="donut-center" style="top:8px;left:8px">
         <div class="donut-center-val" style="color:var(--navy)">${pct}%</div>
@@ -546,30 +486,40 @@ function renderDonut(){
     </div>`;
 }
 
-function renderMotivos(){
-  const max=Math.max(...D.motivos_agg.map(m=>m.count));
-  const MC={'NO PERMITE CONTEO':'#C93B3B','LOCAL CERRADO':'#6B7A99','NO VENDE VUSE':'#0E9B6A','STAFF OCUPADO':'#243580','LOCAL EN INVENTARIO':'#D97706'};
-  document.getElementById('motivos-bars').innerHTML=D.motivos_agg.map(m=>`
+function renderMotivos() {
+  const D = MESES[currentMes];
+  const max = Math.max(...D.motivos_agg.map(m=>m.count));
+  const MC = {'NO PERMITE CONTEO':'#C93B3B','LOCAL CERRADO':'#6B7A99','LOCAL CERRADO DEFINITIVAMENTE':'#8B0000','NO VENDE VUSE':'#0E9B6A','STAFF OCUPADO':'#243580','LOCAL EN INVENTARIO':'#D97706','SIN PROMOTOR ASIGNADO':'#9333ea','OTRO':'#6B7A99'};
+  document.getElementById('motivos-bars').innerHTML = D.motivos_agg.map(m=>`
     <div class="bar-row">
       <div class="bar-label" title="${m.motivo}">${m.motivo}</div>
       <div class="bar-track"><div class="bar-fill" style="width:${(m.count/max*100).toFixed(1)}%;background:${MC[m.motivo]||'var(--muted)'}"></div></div>
       <div class="bar-val">${m.count}</div>
     </div>`).join('');
-  const mf=D.motivos_detail.filter(d=>!F.promotor||d.promotor===F.promotor);
-  const bp={};mf.forEach(d=>{bp[d.promotor]=(bp[d.promotor]||0)+1;});
-  const top=Object.entries(bp).sort((a,b)=>b[1]-a[1]).slice(0,5);
-  document.getElementById('motivos-detail').innerHTML=top.length?
+  // Populate motivo filter dynamically
+  const sel = document.getElementById('f-motivo-noef');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">Todos los motivos</option>';
+  D.motivos_agg.forEach(m => {
+    const o = document.createElement('option'); o.value=m.motivo; o.textContent=m.motivo;
+    if(m.motivo===cur) o.selected=true;
+    sel.appendChild(o);
+  });
+  const mf = D.motivos_detail.filter(d=>!F.promotor||d.promotor===F.promotor);
+  const bp = {}; mf.forEach(d=>{bp[d.promotor]=(bp[d.promotor]||0)+1;});
+  const top = Object.entries(bp).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  document.getElementById('motivos-detail').innerHTML = top.length ?
     `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;color:var(--muted);font-weight:700">Por Promotor — Top 5</div>`+
-    top.map(([p,v])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--text2)">${p}</span><span style="font-weight:700;color:var(--red)">${v}</span></div>`).join(''):'';
+    top.map(([p,v])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--text2)">${p}</span><span style="font-weight:700;color:var(--red)">${v}</span></div>`).join('') : '';
 }
 
-function renderKkaa(){
-  const data=fKkaa();const g={};
+function renderKkaa() {
+  const data = fKkaa(); const g = {};
   data.forEach(k=>{g[ks(k.CADENA)]=(g[ks(k.CADENA)]||0)+k.count;});
-  const sorted=Object.entries(g).sort((a,b)=>b[1]-a[1]);
-  const max=sorted[0]?.[1]||1;
-  const cols=['#1B2F6E','#C9A000','#0E9B6A','#C93B3B','#6B7A99','#D97706','#243580'];
-  document.getElementById('kkaa-bars').innerHTML=sorted.map(([k,v],i)=>`
+  const sorted = Object.entries(g).sort((a,b)=>b[1]-a[1]);
+  const max = sorted[0]?.[1]||1;
+  const cols = ['#1B2F6E','#C9A000','#0E9B6A','#C93B3B','#6B7A99','#D97706','#243580'];
+  document.getElementById('kkaa-bars').innerHTML = sorted.map(([k,v],i)=>`
     <div class="bar-row">
       <div class="bar-label">${k}</div>
       <div class="bar-track"><div class="bar-fill" style="width:${(v/max*100).toFixed(1)}%;background:${cols[i%cols.length]}"></div></div>
@@ -577,15 +527,16 @@ function renderKkaa(){
     </div>`).join('');
 }
 
-function renderWeekly(){
-  const weeks=['SEM 1','SEM 2','SEM 3','SEM 4','SEM 5'];
-  const bw={};
+function renderWeekly() {
+  const D = MESES[currentMes];
+  const weeks = ['SEM 1','SEM 2','SEM 3','SEM 4','SEM 5'];
+  const bw = {};
   D.weekly.forEach(w=>{if(!bw[w.s])bw[w.s]={VUSE:0,VELO:0};if(!F.brand||F.brand===w.b)bw[w.s][w.b]+=w.c;});
-  const maxV=Math.max(...weeks.map(w=>(bw[w]?.VUSE||0)+(bw[w]?.VELO||0)))||1;
-  let html='<div style="display:flex;gap:8px;align-items:flex-end;height:88px;">';
-  weeks.forEach(wk=>{
-    const d=bw[wk]||{VUSE:0,VELO:0};
-    const vh=Math.round((d.VUSE||0)/maxV*68);const vlh=Math.round((d.VELO||0)/maxV*68);
+  const maxV = Math.max(...weeks.map(w=>(bw[w]?.VUSE||0)+(bw[w]?.VELO||0)))||1;
+  let html = '<div style="display:flex;gap:8px;align-items:flex-end;height:88px;">';
+  weeks.forEach(wk => {
+    const d = bw[wk]||{VUSE:0,VELO:0};
+    const vh = Math.round((d.VUSE||0)/maxV*68); const vlh = Math.round((d.VELO||0)/maxV*68);
     html+=`<div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1">
       <div style="display:flex;gap:3px;align-items:flex-end;height:70px">
         ${!F.brand||F.brand==='VUSE'?`<div style="width:16px;height:${Math.max(vh,3)}px;background:#C9A000;border-radius:3px 3px 0 0" title="VUSE:${d.VUSE}"></div>`:''}
@@ -595,25 +546,37 @@ function renderWeekly(){
       <div style="font-size:10px;font-weight:700;color:var(--navy)">${(d.VUSE||0)+(d.VELO||0)}</div>
     </div>`;
   });
-  document.getElementById('weekly-chart').innerHTML=html+'</div>';
+  document.getElementById('weekly-chart').innerHTML = html+'</div>';
 }
 
-function renderSKU(){
-  let data=F.brand?D.top_sku.filter(s=>s.brand===F.brand):D.top_sku;
-  data=data.slice(0,8);const max=data[0]?.units||1;
-  const bc={VUSE:'#C9A000',VELO:'#6B7A99'};
-  document.getElementById('sku-bars').innerHTML=data.map(s=>`
+function renderSKU() {
+  const D = MESES[currentMes];
+  let data = F.brand ? D.top_sku.filter(s=>s.brand===F.brand) : D.top_sku;
+  data = data.slice(0,8); const max = data[0]?.units||1;
+  const bc = {VUSE:'#C9A000',VELO:'#6B7A99'};
+  document.getElementById('sku-bars').innerHTML = data.map(s=>`
     <div class="bar-row">
-      <div class="bar-label" style="font-size:10px" title="${s.brand} ${s.sku}">${s.sku}</div>
+      <div class="bar-label" style="font-size:10px" title="${s.sku}">${s.sku}</div>
       <div class="bar-track"><div class="bar-fill" style="width:${(s.units/max*100).toFixed(1)}%;background:${bc[s.brand]||'var(--navy)'}"></div></div>
       <div class="bar-val" style="font-size:10px">${(s.units/1000).toFixed(1)}k</div>
     </div>`).join('');
 }
 
-function renderParcialKkaa(){
-  const max=D.parcial_kkaa[0]?.c||1;
-  const cols=['#D97706','#C9A000','#0E9B6A','#1B2F6E','#C93B3B','#6B7A99'];
-  document.getElementById('parcial-kkaa').innerHTML=D.parcial_kkaa.map((k,i)=>`
+function renderParcialPromo() {
+  const data = fParcialPromo().sort((a,b)=>b.c-a.c); const max = data[0]?.c||1;
+  document.getElementById('parcial-promo').innerHTML = data.length ? data.map(x=>`
+    <div class="bar-row">
+      <div class="bar-label">${x.p.split(' ')[0]}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(x.c/max*100).toFixed(1)}%;background:var(--orange)"></div></div>
+      <div class="bar-val">${x.c}</div>
+    </div>`).join('') : '<div style="color:var(--muted);font-size:12px;padding:12px">Sin datos</div>';
+}
+
+function renderParcialKkaa() {
+  const D = MESES[currentMes];
+  const max = D.parcial_kkaa[0]?.c||1;
+  const cols = ['#D97706','#C9A000','#0E9B6A','#1B2F6E','#C93B3B','#6B7A99'];
+  document.getElementById('parcial-kkaa').innerHTML = D.parcial_kkaa.map((k,i)=>`
     <div class="bar-row">
       <div class="bar-label">${ks(k.kkaa)}</div>
       <div class="bar-track"><div class="bar-fill" style="width:${(k.c/max*100).toFixed(1)}%;background:${cols[i%cols.length]}"></div></div>
@@ -621,18 +584,19 @@ function renderParcialKkaa(){
     </div>`).join('');
 }
 
-function renderNoEfTable(){
-  const search=document.getElementById('search-noef').value.toLowerCase();
-  const mf=document.getElementById('f-motivo-noef').value;
-  let data=D.motivos_detail.filter(d=>{
+function renderNoEfTable() {
+  const D = MESES[currentMes];
+  const search = document.getElementById('search-noef').value.toLowerCase();
+  const mf = document.getElementById('f-motivo-noef').value;
+  let data = D.motivos_detail.filter(d=>{
     if(F.promotor&&d.promotor!==F.promotor)return false;
     if(mf&&d.motivo!==mf)return false;
     if(search&&!`${d.POS} ${d.promotor} ${d.motivo} ${d.kkaa}`.toLowerCase().includes(search))return false;
     return true;
   });
-  document.getElementById('noef-count').textContent=`${data.length} PDVs`;
-  const MC={'NO PERMITE CONTEO':'pill-red','LOCAL CERRADO':'pill-gray','NO VENDE VUSE':'pill-green','STAFF OCUPADO':'pill-navy','LOCAL EN INVENTARIO':'pill-orange'};
-  document.getElementById('noef-tbody').innerHTML=data.map(d=>`
+  document.getElementById('noef-count').textContent = `${data.length} PDVs`;
+  const MC = {'NO PERMITE CONTEO':'pill-red','LOCAL CERRADO':'pill-gray','LOCAL CERRADO DEFINITIVAMENTE':'pill-red','NO VENDE VUSE':'pill-green','STAFF OCUPADO':'pill-navy','LOCAL EN INVENTARIO':'pill-orange','SIN PROMOTOR ASIGNADO':'pill-orange','OTRO':'pill-gray'};
+  document.getElementById('noef-tbody').innerHTML = data.map(d=>`
     <tr>
       <td><strong style="font-size:11px;color:var(--navy)">${d.POS}</strong></td>
       <td><span class="pill pill-navy" style="font-size:10px">${ks(d.kkaa)}</span></td>
@@ -642,15 +606,16 @@ function renderNoEfTable(){
     </tr>`).join('');
 }
 
-function renderParcialTable(){
-  const search=document.getElementById('search-parcial').value.toLowerCase();
-  let data=D.parcial_detail.filter(d=>{
+function renderParcialTable() {
+  const D = MESES[currentMes];
+  const search = document.getElementById('search-parcial').value.toLowerCase();
+  let data = D.parcial_detail.filter(d=>{
     if(F.promotor&&d.promotor!==F.promotor)return false;
     if(search&&!`${d.POS} ${d.promotor} ${d.kkaa}`.toLowerCase().includes(search))return false;
     return true;
   });
-  document.getElementById('parcial-count').textContent=`${data.length} PDVs`;
-  document.getElementById('parcial-tbody').innerHTML=data.map(d=>`
+  document.getElementById('parcial-count').textContent = `${data.length} PDVs`;
+  document.getElementById('parcial-tbody').innerHTML = data.map(d=>`
     <tr>
       <td><strong style="font-size:11px;color:var(--navy)">${d.POS}</strong></td>
       <td><span class="pill pill-navy" style="font-size:10px">${ks(d.kkaa)}</span></td>
@@ -659,12 +624,16 @@ function renderParcialTable(){
     </tr>`).join('');
 }
 
-function renderAll(){
-  renderKPIs();renderRegionCards();renderDonut();renderMotivos();
-  renderKkaa();renderWeekly();renderSKU();
-  renderParcialKkaa();renderNoEfTable();renderParcialTable();
+function renderAll() {
+  renderKPIs(); renderRegionCards(); renderDonut(); renderMotivos();
+  renderKkaa(); renderWeekly(); renderSKU();
+  renderParcialPromo(); renderParcialKkaa();
+  renderNoEfTable(); renderParcialTable();
 }
-populateFilters();renderAll();
+
+// INIT
+populatePromoFilter();
+renderAll();
 </script>
 </body>
 </html>
